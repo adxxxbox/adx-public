@@ -1,6 +1,7 @@
 /**
  * Power Menu Helper Module
  * Provides utilities for adding custom items to ChatGPT's power popup menu
+ * Require it in your userscript to use as follows: @require path/to/power-menu-injecter.js
  * 
  * Usage:
  * PowerMenuHelper.addMenuButton({
