@@ -1,17 +1,30 @@
-How to use it:
+# How to use it
 
-1. Include the SilverBox’s files on the page.
+## 1. Include the SilverBox's files on the page
 
+```html
 <link rel="stylesheet" href="link to css" />
 <script src="link to silverBox.min.js"></script>
-in userscripts, use @require and @resource to include the files.
-2. Create a basic alert popup using the silverBox method:
+```
 
+In userscripts, use @require (for the js file) and @resource (for the css file) to include the files, as follows:
+
+```javascript
+// @require      https://raw.githubusercontent.com/adxxxbox/adx-public/refs/heads/main/functions/silverBox/silverBox.min.js
+// @resource     SILVERBOX_CSS https://raw.githubusercontent.com/adxxxbox/adx-public/refs/heads/main/functions/silverBox/silverBox.min.css
+```
+
+## 2. Create a basic alert popup using the silverBox method
+
+```javascript
 const myModal = silverBox({
   text: "This Is A Basic Alert Popup."
 })
-3. Customize the SilverBox using the following options.
+```
 
+## 3. Customize the SilverBox using the following options
+
+```javascript
 const myModal = silverBox({
   // success, error, warning, info, question
   alertIcon: "",
@@ -162,9 +175,13 @@ const myModal = silverBox({
     text: "",
   }
 })
-4. API methods.
+```
 
+## 4. API methods
+
+```javascript
 // Remove silverBox
 myModal.remove();
 // Remove button(s) loading animation
 myModal.removeLoading();
+```
