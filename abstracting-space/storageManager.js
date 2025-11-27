@@ -1,6 +1,6 @@
 // storageManager.js
 
-function createStorageManager({
+window.createStorageManager = function({
   getValue,
   setValue,
   config,
@@ -76,4 +76,4 @@ function createStorageManager({
     setLastState,
     updateLastState,
   };
-}
+};

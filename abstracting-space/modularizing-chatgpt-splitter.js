@@ -8,6 +8,7 @@
 // @match        https://chat.openai.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=openai.com
 // @require      https://raw.githubusercontent.com/adxxxbox/adx-public/refs/heads/main/abstracting-space/storageManager.js
+// @require      https://raw.githubusercontent.com/adxxxbox/adx-public/refs/heads/main/abstracting-space/uiUtils.js
 // @grant        GM_setValue
 // @grant        GM_getValue
 // @grant        GM_xmlhttpRequest
@@ -17,7 +18,6 @@
   "use strict";
 
   // Configuration object for easy reconfiguration
-  // Only keep chunk prompt in config
   const CONFIG = {
     API: {
       ENABLED: true,
@@ -49,47 +49,6 @@
     config: CONFIG,
   });
 
-  // UI Utilities - helper functions for interface management
-  const UIUtils = {
-    isDarkMode() {
-      return (
-        document.documentElement.classList.contains("dark") ||
-        document.body.classList.contains("dark")
-      );
-    },
-    showToast(message, type = "info") {
-      const toast = document.createElement("div");
-      toast.className = `fixed top-4 right-4 p-4 rounded-md z-50 ${
-        type === "error"
-          ? "bg-red-500 text-white"
-          : type === "success"
-          ? "bg-green-500 text-white"
-          : "bg-blue-500 text-white"
-      }`;
-      toast.innerHTML = message;
-      document.body.appendChild(toast);
-      setTimeout(() => {
-        toast.remove();
-      }, 3000);
-    },
-    debounce(func, wait) {
-      let timeout;
-      return function executedFunction(...args) {
-        const later = () => {
-          clearTimeout(timeout);
-          func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-      };
-    },
-    closeModal(modalId) {
-      const modal = document.querySelector(`#${modalId}`);
-      if (modal) {
-        modal.remove();
-      }
-    },
-  };
 
   // Splitter functionality - handles text splitting and chunk generation
   const TextSplitter = {
