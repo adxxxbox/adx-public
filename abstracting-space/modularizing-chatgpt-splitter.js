@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Splitter Modulaized
+// @name         ChatGPT Splitter
 // @namespace    http://tampermonkey.net/
 // @version      2025-06-17
 // @description  Split long prompts for ChatGPT
@@ -7,50 +7,42 @@
 // @match        https://chatgpt.com/*
 // @match        https://chat.openai.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=openai.com
-// @require      https://raw.githubusercontent.com/adxxxbox/adx-public/refs/heads/main/abstracting-space/storageManager.js
-// @require      https://raw.githubusercontent.com/adxxxbox/adx-public/refs/heads/main/abstracting-space/uiUtils.js
 // @grant        GM_setValue
 // @grant        GM_getValue
 // @grant        GM_xmlhttpRequest
 // ==/UserScript==
-
 (function () {
   "use strict";
 
-  // Configuration object for easy reconfiguration
-  const CONFIG = {
-    API: {
-      ENABLED: true,
-      URL: "https://script.google.com/macros/s/AKfycbwhzJXqzziExl5uLY2djhOiaEtzfLCKprWYIAJTK7tqTw7KCFf5kFKH9Lfl9LGXCdlFnw/exec",
-      TIMEOUT: 10000,
-    },
-    UI: {
-      SEND_DELAY: 300,
-      RESPONSE_CHECK_INTERVAL: 1000,
-      INITIAL_RESPONSE_DELAY: 2000,
-      RANDOM_DELAY_MIN: 100,
-      RANDOM_DELAY_MAX: 500,
-    },
-    SPLITTER: {
-      DEFAULT_DELIMITER: "\n\n---\n\n",
-      DEFAULT_CHUNK_PROMPT: "And this.",
-    },
-    DEBUG: {
-      ENABLED: true,
-      LOG_CHUNKS: true,
-      LOG_TIMING: true,
-    },
-  };
+// TODO: Make a CONFIG section at the top to easily adjust settings. It should contain info and configs related to API, delays settings (like send delay, and response check delay), and default values in case of no saved settings.
+    /* Some info to include:
+    API URL: "https://script.google.com/macros/s/AKfycbwhzJXqzziExl5uLY2djhOiaEtzfLCKprWYIAJTK7tqTw7KCFf5kFKH9Lfl9LGXCdlFnw/exec".
+    SPLITTER defaults: delimiter, chunkPrompt, useRegex, randomDelayMin, randomDelayMax.
+     */
+// ---
+// TODO: make a gmStorageManager module to handle getting/setting values from GM storage. It should have the following functions:
+  // - setSettings(settingsToStore, settingsLabel): takes a settings object and stores it as a JSON string in GM storage labeled by settingsLabel
+  // - getSettings(settingsLabel, defaults): loads settings object from GM storage and parse them, and if not found, returns the provided defaults object
+  // - setLastState(lastStateObject, lastStateLabel): stores the last state object as a JSON string in GM storage
+  // - getLastState(lastStateLabel): loads last state object from GM storage and parse it, or returns defaults if not found
 
-  // Use the module at storageManager.js to create a storage manager
-  const StorageManager = createStorageManager({
-    getValue: GM_getValue,
-    setValue: GM_setValue,
-    config: CONFIG,
-  });
+// ---
+// TODO: general little helpers
+  // - debounce(func, wait): standard debounce function to limit how often a function can be called
+
+// ---
+
+// TODO: uiUtilities module.
+  // isDarkMode(): returns true if dark mode is enabled on the page
+  // - showTopCenterToast(message, color): the color parameter can be 'red', 'green', 'blue', etc. .. depending on the type of toast .. generally, will use red for errors, green for success, blue for info
+  // - createModal(modalId, theme): creates and shows a modal with the given ID. The theme parameter can be 'dark' or 'light' to set the modal theme accordingly.
+  // - closeModal(modalId): closes and removes a modal by its ID
+
+// ---// TODO: splitterManager module
+    // - splitText(text, delimiter, useRegex): splits text into chunks using the delimiter. If useRegex is true, treats delimiter as a regex pattern. Returns an array of text chunks. Filter out empty chunks or chunks with only whitespaces or newlines.
 
 
-  // Splitter functionality - handles text splitting and chunk generation
+
   const TextSplitter = {
     // Splits text into chunks using delimiter or regex
     splitText(text, delimiter, useRegex = false) {
@@ -68,7 +60,7 @@
         console.error("Error splitting text:", error);
         return [text];
       }
-    },
+    }, 
     // For each chunk, append the chunkPrompt after the chunk (for all chunks)
     generateChunks(text, settings) {
       const { delimiter, chunkPrompt, useRegex } = settings;
@@ -88,8 +80,6 @@
     },
   };
 
-  // Text Input Manager - simple module to handle both file and paste text input
-  // This keeps track of what text we're working with, whether from file or paste
   const TextInputManager = {
     currentText: "", // Stores the text we'll split
     source: null,
@@ -158,7 +148,6 @@
     },
   };
 
-  // Chunk Chain Manager - handles sequential sending of chunks with pause/resume controls
   const ChunkChainManager = {
     currentChunks: [],
     currentIndex: 0,
@@ -344,10 +333,14 @@
       if (statusElement) {
         if (this.isRunning) {
           if (this.isPaused) {
-            statusElement.textContent = `Paused at message ${this.currentIndex} out of ${this.totalChunks}`;
+            statusElement.textContent = `Paused at message ${
+              this.currentIndex + 1
+            } out of ${this.totalChunks}`;
             statusElement.className = "text-orange-600 text-sm ml-2";
           } else {
-            statusElement.textContent = `Processing message ${this.currentIndex} out of ${this.totalChunks}`;
+            statusElement.textContent = `Awaiting to send message ${
+              this.currentIndex + 1
+            } out of ${this.totalChunks}`;
             statusElement.className = "text-lightgray-600 text-sm ml-2";
           }
         }
@@ -411,39 +404,33 @@
   let splitterApiConfig = null;
 
   // Create the splitter modal popup (fields update if API fetch finishes later)
-  // Refactored: moved modal DOM + wiring into DialogUI module
-  // DialogUI preserves exact behavior; createSplitterModal now delegates to it.
-  const DialogUI = (function () {
-    let modalEl = null;
-    let configs = [];
+  function createSplitterModal() {
+    let currentSettings = StorageManager.getSplitterSettings();
+    const lastState = StorageManager.getLastState();
+    let configs = getAllSplitterConfigs();
+    const maxIndex = Math.max(configs.length - 1, 0);
+    const preferredIndex =
+      typeof lastState.lastConfigIndex === "number"
+        ? Math.min(Math.max(lastState.lastConfigIndex, 0), maxIndex)
+        : 0;
 
-    function buildAndOpen() {
-      const currentSettings = StorageManager.getSplitterSettings();
-      const lastState = StorageManager.getLastState();
-      configs = getAllSplitterConfigs();
-      const maxIndex = Math.max(configs.length - 1, 0);
-      const preferredIndex =
-        typeof lastState.lastConfigIndex === "number"
-          ? Math.min(Math.max(lastState.lastConfigIndex, 0), maxIndex)
-          : 0;
+    // Build dropdown options from configs using their title property
+    let dropdownOptions = configs
+      .map((cfg, idx) => {
+        // Use the title property if available, else fallback to 'Config {number}'
+        const title = cfg.title ? cfg.title : `Config ${idx + 1}`;
+        const selectedAttr = idx === preferredIndex ? " selected" : "";
+        return `<option value="${idx}"${selectedAttr}>${title}</option>`;
+      })
+      .join("");
 
-      let dropdownOptions = configs
-        .map((cfg, idx) => {
-          const title = cfg.title ? cfg.title : `Config ${idx + 1}`;
-          const selectedAttr = idx === preferredIndex ? " selected" : "";
-          return `<option value="${idx}"${selectedAttr}>${title}</option>`;
-        })
-        .join("");
+    const settings = currentSettings;
 
-      // Remove existing modal if present
-      const existing = document.getElementById("splitter-modal");
-      if (existing) existing.remove();
-
-      modalEl = document.createElement("div");
-      modalEl.id = "splitter-modal";
-      modalEl.className = "fixed inset-0 flex items-center justify-center z-50";
-      modalEl.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
-      modalEl.innerHTML = `
+    const modal = document.createElement("div");
+    modal.id = "splitter-modal";
+    modal.className = "fixed inset-0 flex items-center justify-center z-50";
+    modal.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+    modal.innerHTML = `
       <div class="bg-white dark:bg-gray-800 rounded-lg p-4 w-72 max-w-90vw max-h-90vh overflow-y-auto">
         <h2 class="text-lg font-bold mb-3 text-gray-900 dark:text-white">Text Splitter</h2>
         <div class="space-y-3">
@@ -475,13 +462,13 @@
               </label>
               <label class="flex items-center text-xs text-gray-600 dark:text-gray-400 ml-2">
                 <input type="checkbox" id="regex-checkbox" ${
-                  currentSettings.useRegex ? "checked" : ""
+                  settings.useRegex ? "checked" : ""
                 } class="mr-1">
                 Regex
               </label>
             </div>
             <input type="text" id="delimiter-input" value="${
-              currentSettings.delimiter
+              settings.delimiter
             }"
                    class="w-full p-1 text-xs border border-gray-300 dark:border-gray-600 rounded dark:bg-gray-700 dark:text-white"
                    placeholder="Enter delimiter string">
@@ -493,21 +480,21 @@
             <textarea id="chunk-prompt-input" rows="2"
                       class="w-full p-1 text-xs border border-gray-300 dark:border-gray-600 rounded dark:bg-gray-700 dark:text-white"
                       placeholder="Prompt to append after each chunk">${
-                        currentSettings.chunkPrompt
+                        settings.chunkPrompt
                       }</textarea>
           </div>
           <div>
             <label class="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
               <span>Random delay between </span>
               <input type="number" id="random-delay-min-input" value="${
-                currentSettings.randomDelayMin
+                settings.randomDelayMin
               }"
                      min="0" max="5000"
                      class="w-10 px-0.5 py-0.5 text-xs border border-gray-300 dark:border-gray-600 rounded dark:bg-gray-700 dark:text-white text-center mx-1"
                      placeholder="Min" />
               <span>and</span>
               <input type="number" id="random-delay-max-input" value="${
-                currentSettings.randomDelayMax
+                settings.randomDelayMax
               }"
                      min="0" max="5000"
                      class="w-10 px-0.5 py-0.5 text-xs border border-gray-300 dark:border-gray-600 rounded dark:bg-gray-700 dark:text-white text-center mx-1"
@@ -528,236 +515,207 @@
         </div>
       </div>
     `;
-      document.body.appendChild(modalEl);
+    document.body.appendChild(modal);
 
-      const dropdownEl = document.getElementById("splitter-config-dropdown");
-      if (dropdownEl && String(preferredIndex) !== dropdownEl.value) {
-        dropdownEl.value = String(preferredIndex);
-      }
-
-      const delimiterInput = document.getElementById("delimiter-input");
-      const chunkPromptInput = document.getElementById("chunk-prompt-input");
-      const regexCheckbox = document.getElementById("regex-checkbox");
-      const randomDelayMinInput = document.getElementById(
-        "random-delay-min-input"
-      );
-      const randomDelayMaxInput = document.getElementById(
-        "random-delay-max-input"
-      );
-      const fileInputEl = document.getElementById("text-file-input");
-
-      const deriveSettingsFromInputs = () => {
-        const parsedMin = parseInt(randomDelayMinInput.value, 10);
-        const parsedMax = parseInt(randomDelayMaxInput.value, 10);
-        return {
-          ...currentSettings,
-          delimiter: delimiterInput.value || currentSettings.delimiter,
-          chunkPrompt: chunkPromptInput.value,
-          useRegex: !!regexCheckbox.checked,
-          randomDelayMin: Number.isFinite(parsedMin)
-            ? parsedMin
-            : currentSettings.randomDelayMin,
-          randomDelayMax: Number.isFinite(parsedMax)
-            ? parsedMax
-            : currentSettings.randomDelayMax,
-        };
-      };
-
-      const persistModalSettings = () => {
-        const newSettings = deriveSettingsFromInputs();
-        StorageManager.setSplitterSettings(newSettings);
-      };
-
-      const debouncedPersistModalSettings = UIUtils.debounce(
-        persistModalSettings,
-        250
-      );
-
-      delimiterInput.addEventListener("input", debouncedPersistModalSettings);
-      chunkPromptInput.addEventListener("input", debouncedPersistModalSettings);
-      regexCheckbox.addEventListener("change", persistModalSettings);
-      randomDelayMinInput.addEventListener(
-        "input",
-        debouncedPersistModalSettings
-      );
-      randomDelayMaxInput.addEventListener(
-        "input",
-        debouncedPersistModalSettings
-      );
-
-      // When dropdown changes, update modal fields
-      dropdownEl.addEventListener("change", (e) => {
-        const idx = parseInt(e.target.value);
-        configs = getAllSplitterConfigs(); // update in case refreshed
-        if (!isNaN(idx) && configs[idx]) {
-          updateModalFieldsFromConfig(configs[idx]);
-          const updated = {
-            ...currentSettings,
-            delimiter: configs[idx].delimiter ?? currentSettings.delimiter,
-            chunkPrompt:
-              configs[idx].chunkPrompt ?? currentSettings.chunkPrompt,
-            useRegex:
-              typeof configs[idx].useRegex === "boolean"
-                ? configs[idx].useRegex
-                : currentSettings.useRegex,
-            randomDelayMin:
-              typeof configs[idx].randomDelayMin === "number"
-                ? configs[idx].randomDelayMin
-                : currentSettings.randomDelayMin,
-            randomDelayMax:
-              typeof configs[idx].randomDelayMax === "number"
-                ? configs[idx].randomDelayMax
-                : currentSettings.randomDelayMax,
-          };
-          StorageManager.setSplitterSettings(updated);
-          StorageManager.updateLastState({ lastConfigIndex: idx });
-        }
-      });
-
-      // Add refresh button logic
-      document
-        .getElementById("refresh-configs-btn")
-        .addEventListener("click", () => {
-          const btn = document.getElementById("refresh-configs-btn");
-          btn.textContent = "...";
-          fetchSplitterConfigsFromAPI().then((apiData) => {
-            btn.textContent = "⟳";
-            configs = getAllSplitterConfigs();
-            dropdownEl.innerHTML = configs
-              .map((cfg, idx) => {
-                const title = cfg.title ? cfg.title : `Config ${idx + 1}`;
-                return `<option value='${idx}'>${title}</option>`;
-              })
-              .join("");
-            if (configs[0]) {
-              updateModalFieldsFromConfig(configs[0]);
-              const updated = {
-                ...currentSettings,
-                delimiter: configs[0].delimiter ?? currentSettings.delimiter,
-                chunkPrompt:
-                  configs[0].chunkPrompt ?? currentSettings.chunkPrompt,
-                useRegex:
-                  typeof configs[0].useRegex === "boolean"
-                    ? configs[0].useRegex
-                    : currentSettings.useRegex,
-                randomDelayMin:
-                  typeof configs[0].randomDelayMin === "number"
-                    ? configs[0].randomDelayMin
-                    : currentSettings.randomDelayMin,
-                randomDelayMax:
-                  typeof configs[0].randomDelayMax === "number"
-                    ? configs[0].randomDelayMax
-                    : currentSettings.randomDelayMax,
-              };
-              StorageManager.setSplitterSettings(updated);
-              StorageManager.updateLastState({ lastConfigIndex: 0 });
-            }
-          });
-        });
-
-      // Only close the modal when the Cancel button is clicked
-      document
-        .getElementById("cancel-splitter")
-        .addEventListener("click", () => {
-          UIUtils.closeModal("splitter-modal");
-        });
-      document
-        .getElementById("start-splitter")
-        .addEventListener("click", () => {
-          startSplitting();
-        });
-
-      if (lastState.text) {
-        TextInputManager.restoreFromState(lastState);
-        const statusLabel =
-          lastState.source === "file"
-            ? lastState.fileName
-              ? `Restored cached "${lastState.fileName}" (${lastState.text.length} chars)`
-              : `Restored cached file text (${lastState.text.length} chars)`
-            : `Restored pasted text (${lastState.text.length} chars)`;
-        updateFileInputDisplay(statusLabel);
-      }
-
-      // Add paste text button functionality
-      document
-        .getElementById("paste-text-button")
-        .addEventListener("click", () => {
-          createPasteTextDialog();
-        });
-
-      // Handle file input changes to clear pasted text status
-      fileInputEl.addEventListener("change", (e) => {
-        const { files } = e.target;
-        const file = files && files[0] ? files[0] : null;
-        if (file) {
-          TextInputManager.setTextFromFile(file).catch((error) => {
-            UIUtils.showToast("Error reading file: " + error.message, "error");
-          });
-        } else {
-          TextInputManager.clearText();
-          const statusMsg = document.getElementById("file-input-status");
-          if (statusMsg) {
-            statusMsg.remove();
-          }
-        }
-      });
-
-      // If API fetch hasn't been done yet, do it once and update fields if modal is still open
-      if (!splitterApiFetched) {
-        splitterApiFetched = true;
-        fetchSplitterConfigsFromAPI().then((apiData) => {
-          if (apiData && Array.isArray(apiData) && apiData.length > 0) {
-            splitterApiConfig = apiData[0];
-            const shouldApplyDefaults = lastState.timestamp === 0;
-            if (shouldApplyDefaults) {
-              const merged = {
-                ...currentSettings,
-                ...splitterApiConfig,
-              };
-              StorageManager.setSplitterSettings(merged);
-            }
-            const modalStillOpen = document.getElementById("splitter-modal");
-            if (modalStillOpen && shouldApplyDefaults) {
-              document.getElementById("delimiter-input").value =
-                splitterApiConfig.delimiter;
-              // keep existing safe access for chunkPrompt/useRegex/randomDelay values
-              if (splitterApiConfig.chunkPrompt !== undefined)
-                document.getElementById("chunk-prompt-input").value =
-                  splitterApiConfig.chunkPrompt;
-              if (splitterApiConfig.useRegex !== undefined)
-                document.getElementById("regex-checkbox").checked =
-                  !!splitterApiConfig.useRegex;
-              if (splitterApiConfig.randomDelayMin !== undefined)
-                document.getElementById("random-delay-min-input").value =
-                  splitterApiConfig.randomDelayMin;
-              if (splitterApiConfig.randomDelayMax !== undefined)
-                document.getElementById("random-delay-max-input").value =
-                  splitterApiConfig.randomDelayMax;
-            }
-          }
-        });
-      }
-
-      // Persist current control values immediately so closing the modal keeps updates
-      persistModalSettings();
+    const dropdownEl = document.getElementById("splitter-config-dropdown");
+    if (dropdownEl && String(preferredIndex) !== dropdownEl.value) {
+      dropdownEl.value = String(preferredIndex);
     }
 
-    return {
-      open: buildAndOpen,
-      close: () => UIUtils.closeModal("splitter-modal"),
-      updateConfigs(newConfigs) {
-        configs = newConfigs || getAllSplitterConfigs();
-        if (document.getElementById("splitter-modal")) {
-          this.close();
-          this.open();
-        }
-      },
-    };
-  })();
+    const delimiterInput = document.getElementById("delimiter-input");
+    const chunkPromptInput = document.getElementById("chunk-prompt-input");
+    const regexCheckbox = document.getElementById("regex-checkbox");
+    const randomDelayMinInput = document.getElementById(
+      "random-delay-min-input"
+    );
+    const randomDelayMaxInput = document.getElementById(
+      "random-delay-max-input"
+    );
+    const fileInputEl = document.getElementById("text-file-input");
 
-  // small shim: keep the original function but delegate to DialogUI
-  function createSplitterModal() {
-    DialogUI.open();
+    const deriveSettingsFromInputs = () => {
+      const parsedMin = parseInt(randomDelayMinInput.value, 10);
+      const parsedMax = parseInt(randomDelayMaxInput.value, 10);
+      return {
+        ...currentSettings,
+        delimiter: delimiterInput.value || currentSettings.delimiter,
+        chunkPrompt: chunkPromptInput.value,
+        useRegex: !!regexCheckbox.checked,
+        randomDelayMin: Number.isFinite(parsedMin)
+          ? parsedMin
+          : currentSettings.randomDelayMin,
+        randomDelayMax: Number.isFinite(parsedMax)
+          ? parsedMax
+          : currentSettings.randomDelayMax,
+      };
+    };
+
+    const persistModalSettings = () => {
+      currentSettings = deriveSettingsFromInputs();
+      StorageManager.setSplitterSettings(currentSettings);
+    };
+
+    const debouncedPersistModalSettings = UIUtils.debounce(
+      persistModalSettings,
+      250
+    );
+
+    delimiterInput.addEventListener("input", debouncedPersistModalSettings);
+    chunkPromptInput.addEventListener("input", debouncedPersistModalSettings);
+    regexCheckbox.addEventListener("change", persistModalSettings);
+    randomDelayMinInput.addEventListener(
+      "input",
+      debouncedPersistModalSettings
+    );
+    randomDelayMaxInput.addEventListener(
+      "input",
+      debouncedPersistModalSettings
+    );
+
+    // When dropdown changes, update modal fields
+    dropdownEl.addEventListener("change", (e) => {
+      const idx = parseInt(e.target.value);
+      configs = getAllSplitterConfigs(); // update in case refreshed
+      if (!isNaN(idx) && configs[idx]) {
+        updateModalFieldsFromConfig(configs[idx]);
+        currentSettings = {
+          ...currentSettings,
+          delimiter: configs[idx].delimiter ?? currentSettings.delimiter,
+          chunkPrompt: configs[idx].chunkPrompt ?? currentSettings.chunkPrompt,
+          useRegex:
+            typeof configs[idx].useRegex === "boolean"
+              ? configs[idx].useRegex
+              : currentSettings.useRegex,
+          randomDelayMin:
+            typeof configs[idx].randomDelayMin === "number"
+              ? configs[idx].randomDelayMin
+              : currentSettings.randomDelayMin,
+          randomDelayMax:
+            typeof configs[idx].randomDelayMax === "number"
+              ? configs[idx].randomDelayMax
+              : currentSettings.randomDelayMax,
+        };
+        StorageManager.setSplitterSettings(currentSettings);
+        StorageManager.updateLastState({ lastConfigIndex: idx });
+      }
+    });
+
+    // Add refresh button logic
+    document
+      .getElementById("refresh-configs-btn")
+      .addEventListener("click", () => {
+        // Show a quick loading indicator
+        const btn = document.getElementById("refresh-configs-btn");
+        btn.textContent = "...";
+        fetchSplitterConfigsFromAPI().then((apiData) => {
+          btn.textContent = "⟳";
+          configs = getAllSplitterConfigs();
+          // Rebuild dropdown options
+          dropdownEl.innerHTML = configs
+            .map((cfg, idx) => {
+              const title = cfg.title ? cfg.title : `Config ${idx + 1}`;
+              return `<option value='${idx}'>${title}</option>`;
+            })
+            .join("");
+          // Update modal fields to first config
+          if (configs[0]) {
+            updateModalFieldsFromConfig(configs[0]);
+            currentSettings = {
+              ...currentSettings,
+              delimiter: configs[0].delimiter ?? currentSettings.delimiter,
+              chunkPrompt:
+                configs[0].chunkPrompt ?? currentSettings.chunkPrompt,
+              useRegex:
+                typeof configs[0].useRegex === "boolean"
+                  ? configs[0].useRegex
+                  : currentSettings.useRegex,
+              randomDelayMin:
+                typeof configs[0].randomDelayMin === "number"
+                  ? configs[0].randomDelayMin
+                  : currentSettings.randomDelayMin,
+              randomDelayMax:
+                typeof configs[0].randomDelayMax === "number"
+                  ? configs[0].randomDelayMax
+                  : currentSettings.randomDelayMax,
+            };
+            StorageManager.setSplitterSettings(currentSettings);
+            StorageManager.updateLastState({ lastConfigIndex: 0 });
+          }
+        });
+      });
+
+    // Only close the modal when the Cancel button is clicked
+    document.getElementById("cancel-splitter").addEventListener("click", () => {
+      UIUtils.closeModal("splitter-modal");
+    });
+    document.getElementById("start-splitter").addEventListener("click", () => {
+      startSplitting();
+    });
+
+    if (lastState.text) {
+      TextInputManager.restoreFromState(lastState);
+      const statusLabel =
+        lastState.source === "file"
+          ? lastState.fileName
+            ? `Restored cached "${lastState.fileName}" (${lastState.text.length} chars)`
+            : `Restored cached file text (${lastState.text.length} chars)`
+          : `Restored pasted text (${lastState.text.length} chars)`;
+      updateFileInputDisplay(statusLabel);
+    }
+
+    // Add paste text button functionality
+    document
+      .getElementById("paste-text-button")
+      .addEventListener("click", () => {
+        createPasteTextDialog();
+      });
+
+    // Handle file input changes to clear pasted text status
+    fileInputEl.addEventListener("change", (e) => {
+      const { files } = e.target;
+      const file = files && files[0] ? files[0] : null;
+      if (file) {
+        TextInputManager.setTextFromFile(file).catch((error) => {
+          UIUtils.showToast("Error reading file: " + error.message, "error");
+        });
+      } else {
+        TextInputManager.clearText();
+        const statusMsg = document.getElementById("file-input-status");
+        if (statusMsg) {
+          statusMsg.remove();
+        }
+      }
+    });
+
+    // If API fetch hasn't been done yet, do it once and update fields if modal is still open
+    if (!splitterApiFetched) {
+      splitterApiFetched = true;
+      fetchSplitterConfigsFromAPI().then((apiData) => {
+        if (apiData && Array.isArray(apiData) && apiData.length > 0) {
+          splitterApiConfig = apiData[0];
+          const shouldApplyDefaults = lastState.timestamp === 0;
+          if (shouldApplyDefaults) {
+            currentSettings = {
+              ...currentSettings,
+              ...splitterApiConfig,
+            };
+            StorageManager.setSplitterSettings(currentSettings);
+          }
+          // If modal is still open, update the fields with new config
+          const modalEl = document.getElementById("splitter-modal");
+          if (modalEl && shouldApplyDefaults) {
+            delimiterInput.value = splitterApiConfig.delimiter;
+            chunkPromptInput.value = splitterApiConfig.chunkPrompt;
+            regexCheckbox.checked = !!splitterApiConfig.useRegex;
+            randomDelayMinInput.value = splitterApiConfig.randomDelayMin;
+            randomDelayMaxInput.value = splitterApiConfig.randomDelayMax;
+          }
+        }
+      });
+    }
+
+    // Persist current control values immediately so closing the modal keeps updates
+    persistModalSettings();
   }
 
   // Helper to get all splitter configs (from API or local)
