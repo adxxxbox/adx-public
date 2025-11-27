@@ -1,0 +1,507 @@
+My Fixed Header
+Home
+About
+Contact
+Search...
+Search
+
+SilverBox
+Intro
+Example
+Usage
+Documentation
+Documentation v1.3.1
+Name
+Type
+Default
+Description
+alertIcon
+string
+" "
+Predefined icons including: success, error, warning, info, question.
+animation
+object | array
+Custom animation. It can ba an object or an array of objects.
+delay
+string | number
+0ms
+Animation delay in milliseconds or seconds.
+direction
+string
+normal
+Animation direction.
+duration
+string | number
+300ms
+Animation duration in milliseconds or seconds.
+fillMode
+string
+none
+Animation fill mode.
+iterationCount
+string | number
+1
+Animation iteration count.
+name
+string
+popUp
+Animation name.
+timingFunction
+string
+1
+Animation timing function.
+buttonsDirection
+string
+" "
+Button wrapper HTML direction.
+cancelButton
+object
+Cancel button configuration
+bgColor
+string
+" "
+Button background color.
+borderColor
+string
+" "
+Button border color.
+className
+string
+" "
+Button ClassName.
+closeOnClick
+boolean
+false
+Whether SilverBox closes on click or not.
+dataAttribute
+object
+" "
+Specify desired html attribute by passing an object with key-value pairs. For example: { hashId:'10012', lastStatus:'failed' } will generate data-hashId='10012' and data-lastStatus='failed' for the appropriate button.
+disabled
+boolean
+false
+Button disabled attribute.
+iconEnd
+string
+" "
+Button icon at the end.
+iconStart
+string
+" "
+Button icon at the start.
+id
+string
+" "
+Button ID.
+loadingAnimation
+boolean
+true
+Button loading animation on click.
+onClick
+function
+" "
+Function to run when button is clicked.
+showButton
+boolean
+true
+Show/Hide button.
+text
+string
+"Cancel"
+Button text.
+textColor
+string
+" "
+Button text color.
+centerContent
+boolean
+false
+Aligns the content center. true or false.
+closeOnOverlayClick
+boolean
+true
+Determines whether the modal should be closed after the overlay click.
+confirmButton
+object
+Confirm button configuration
+bgColor
+string
+" "
+Button background color.
+borderColor
+string
+" "
+Button border color.
+className
+string
+" "
+Button ClassName.
+closeOnClick
+boolean
+false
+Whether SilverBox closes on click or not.
+dataAttribute
+object
+" "
+Specify desired html attribute by passing an object with key-value pairs. For example: { hashId:'10012', lastStatus:'failed' } will generate data-hashId='10012' and data-lastStatus='failed' for the appropriate button.
+disabled
+boolean
+false
+Button disabled attribute.
+iconEnd
+string
+" "
+Button icon at the end.
+iconStart
+string
+" "
+Button icon at the start.
+id
+string
+" "
+Button ID.
+loadingAnimation
+boolean
+true
+Button loading animation on click.
+onClick
+function
+" "
+Function to run when button is clicked.
+showButton
+boolean
+true
+Show/Hide button.
+text
+string
+"Confirm"
+Button text.
+textColor
+string
+" "
+Button text color.
+customButton
+object
+Custom button configuration
+bgColor
+string
+" "
+Button background color.
+borderColor
+string
+" "
+Button border color.
+className
+string
+" "
+Button ClassName.
+closeOnClick
+boolean
+false
+Whether SilverBox closes on click or not.
+dataAttribute
+object
+" "
+Specify desired html attribute by passing an object with key-value pairs. For example: { hashId:'10012', lastStatus:'failed' } will generate data-hashId='10012' and data-lastStatus='failed' for the appropriate button.
+disabled
+boolean
+false
+Button disabled attribute.
+iconEnd
+string
+" "
+Button icon at the end.
+iconStart
+string
+" "
+Button icon at the start.
+id
+string
+" "
+Button ID.
+loadingAnimation
+boolean
+true
+Button loading animation on click.
+onClick
+function
+" "
+Function to run when button is clicked.
+showButton
+boolean
+true
+Show/Hide button.
+text
+string
+"Custom"
+Button text.
+textColor
+string
+" "
+Button text color.
+customIcon
+string
+" "
+Path to a customIcon. For example customIcon: path/to/icon; .
+customIconClassName
+string
+" "
+SilverBox custom icon class name.
+customIconId
+string
+" "
+SilverBox custom icon id.
+customSvgIcon
+string
+" "
+SilverBox custom svg icon element. For example: <svg> (your svg config here) </svg>.
+customSvgIconClassName
+string
+" "
+SilverBox custom svg icon element class name.
+customSvgIconId
+string
+" "
+SilverBox custom svg icon element id.
+denyButton
+object
+Deny button configuration
+bgColor
+string
+" "
+Button background color.
+borderColor
+string
+" "
+Button border color.
+className
+string
+" "
+Button ClassName.
+closeOnClick
+boolean
+false
+Whether SilverBox closes on click or not.
+dataAttribute
+object
+" "
+Specify desired html attribute by passing an object with key-value pairs. For example: { hashId:'10012', lastStatus:'failed' } will generate data-hashId='10012' and data-lastStatus='failed' for the appropriate button.
+disabled
+boolean
+false
+Button disabled attribute.
+iconEnd
+string
+" "
+Button icon at the end.
+iconStart
+string
+" "
+Button icon at the start.
+id
+string
+" "
+Button ID.
+loadingAnimation
+boolean
+true
+Button loading animation on click.
+onClick
+function
+" "
+Function to run when button is clicked.
+showButton
+boolean
+true
+Show/Hide button.
+text
+string
+"Deny"
+Button text.
+textColor
+string
+" "
+Button text color.
+didOpen
+function
+" "
+Function to run after silverBox is rendered.
+direction
+string
+" "
+SilverBox HTML direction.
+footer
+string
+" "
+HTML as SilverBox footer.
+html
+string | HTMLElement
+" "
+HTML as SilverBox body. If text parameter is given at the same time as HTML parameter, text will be ignored. examples:
+<a href='/recovery'>recover password</a>.
+or
+inputElement.
+input
+object | array
+Input configuration. Can be an object or an array of objects.
+className
+string
+" "
+Input class.
+fontSize
+string
+" "
+Input font size.
+height
+string
+"100%"
+Input height.
+hint
+string
+" "
+Input hint at the bottom.
+id
+string
+" "
+Input id.
+label
+string
+" "
+Input label.
+maxLength
+string
+" "
+Input maxlength attribute.
+multiplyBy
+number
+1
+Multiplies the input.
+name
+string
+" "
+Input name attribute.
+numberOnly
+boolean
+false
+Accept only numbers from user.
+placeHolder
+string
+" "
+Input place holder.
+placeHolderFontSize
+string
+" "
+Input placeHolder font size.
+readOnly
+boolean
+false
+Input readonly attribute.
+textAlign
+string
+" "
+Input text align.
+type
+string
+"text"
+Input type. It can be text, number, textarea, ...
+value
+string
+" "
+Input value.
+width
+string
+"100%"
+Input width.
+onClose
+function
+" "
+Function to run when silverBox closes.
+position
+string
+" "
+Position SilverBox in: top-right, top-center, top-left, bottom-right, bottom-center, bottom-left.
+preOpen
+function
+" "
+Function to run before silverBox is rendered.
+removeLoading
+string
+" "
+Remove button loading animations. It can take first, last, all, number of the SilverBox (like '1').
+removeSilverBox
+string
+" "
+Remove previous silverBoxes. It can take first, last, all, number of the SilverBox (like '1').
+showCloseButton
+boolean
+false
+Shows a small 'x' on the top of SilverBox.
+silverBoxClassName
+string
+" "
+SilverBox custom class name.
+silverBoxId
+string
+" "
+SilverBox custom ID.
+text
+string
+" "
+Text as SilverBox body. If text parameter is given at the same time as HTML parameter, text will be ignored.
+theme
+string
+"light"
+Changes SilverBox theme. Predefined themes: light, dark.
+timer
+number | string | object
+Timer config to close silverBox after a given time. It can be treated as duration if you do not need other configs. For example: timer: 1000ms
+and
+timer: { duration:'1000ms' , pauseOnHover: false}
+duration
+number | string
+0
+Timer duration in milliseconds (300ms) or seconds (0.3s) to close silverBox. The default unit is ms if no unit is provided.
+pauseOnHover
+boolean
+true
+Pause timer when mouse hovers on SilverBox.
+showBar
+boolean
+true
+Show timer bar bellow SilverBox.
+title
+string | object
+SilverBox title. It can be a string or an object.
+alertIcon
+string
+" "
+Predefined title icons including: success, error, warning, info, question.
+customIcon
+string
+" "
+Path to a title custom icon. For example customIcon: path/to/icon; .
+customIconClassName
+string
+" "
+SilverBox title custom icon class.
+customIconId
+string
+" "
+SilverBox title custom icon id.
+customSvgIcon
+string
+" "
+SilverBox custom svg icon element. For example: <svg> (your svg config here) </svg>.
+customSvgIconClassName
+string
+" "
+SilverBox custom svg icon element class name.
+customSvgIconId
+string
+" "
+SilverBox custom svg icon element id.
+text
+string
+" "
+Title text
+🛠️

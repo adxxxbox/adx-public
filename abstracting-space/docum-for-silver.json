@@ -1,0 +1,756 @@
+[
+    {
+        "argument-name": "alertIcon",
+        "TYPE": "string",
+        "default_value": "\" \"",
+        "EXPLANATION": "Predefined icons including:  `success`, `error`, `warning`, `info`, `question`."
+    },
+    {
+        "argument-name": "animation",
+        "TYPE": "object | array",
+        "default_value": "no_default_value",
+        "EXPLANATION": "Custom animation. It can ba an object or an array of objects.",
+        "configurations": [
+            {
+                "argument-name": "delay",
+                "TYPE": "string | number",
+                "default_value": "0ms",
+                "EXPLANATION": "Animation delay in milliseconds or seconds."
+            },
+            {
+                "argument-name": "direction",
+                "TYPE": "string",
+                "default_value": "normal",
+                "EXPLANATION": "Animation direction."
+            },
+            {
+                "argument-name": "duration",
+                "TYPE": "string | number",
+                "default_value": "300ms",
+                "EXPLANATION": "Animation duration in milliseconds or seconds."
+            },
+            {
+                "argument-name": "fillMode",
+                "TYPE": "string",
+                "default_value": "none",
+                "EXPLANATION": "Animation fill mode."
+            },
+            {
+                "argument-name": "iterationCount",
+                "TYPE": "string | number",
+                "default_value": "1",
+                "EXPLANATION": "Animation iteration count."
+            },
+            {
+                "argument-name": "name",
+                "TYPE": "string",
+                "default_value": "popUp",
+                "EXPLANATION": "Animation name."
+            },
+            {
+                "argument-name": "timingFunction",
+                "TYPE": "string",
+                "default_value": "1",
+                "EXPLANATION": "Animation timing function."
+            }
+        ]
+    },
+    {
+        "argument-name": "buttonsDirection",
+        "TYPE": "string",
+        "default_value": "\" \"",
+        "EXPLANATION": "Button wrapper HTML direction."
+    },
+    {
+        "argument-name": "cancelButton",
+        "TYPE": "object",
+        "default_value": "no_default_value",
+        "EXPLANATION": "Cancel button configuration",
+        "configurations": [
+            {
+                "argument-name": "bgColor",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Button background color."
+            },
+            {
+                "argument-name": "borderColor",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Button border color."
+            },
+            {
+                "argument-name": "className",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Button ClassName."
+            },
+            {
+                "argument-name": "closeOnClick",
+                "TYPE": "boolean",
+                "default_value": "false",
+                "EXPLANATION": "Whether SilverBox closes on click or not."
+            },
+            {
+                "argument-name": "dataAttribute",
+                "TYPE": "object",
+                "default_value": "\" \"",
+                "EXPLANATION": "Specify desired html attribute by passing an object with key-value pairs. For example:  `{ hashId:'10012', lastStatus:'failed' }` will generate `data-hashId='10012'` and `data-lastStatus='failed'` for the appropriate button.  "
+            },
+            {
+                "argument-name": "disabled",
+                "TYPE": "boolean",
+                "default_value": "false",
+                "EXPLANATION": "Button disabled attribute."
+            },
+            {
+                "argument-name": "iconEnd",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Button icon at the end."
+            },
+            {
+                "argument-name": "iconStart",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Button icon at the start."
+            },
+            {
+                "argument-name": "id",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Button ID."
+            },
+            {
+                "argument-name": "loadingAnimation",
+                "TYPE": "boolean",
+                "default_value": "true",
+                "EXPLANATION": "Button loading animation on click."
+            },
+            {
+                "argument-name": "onClick",
+                "TYPE": "function",
+                "default_value": "\" \"",
+                "EXPLANATION": "Function to run when button is clicked."
+            },
+            {
+                "argument-name": "showButton",
+                "TYPE": "boolean",
+                "default_value": "true",
+                "EXPLANATION": "Show/Hide button."
+            },
+            {
+                "argument-name": "text",
+                "TYPE": "string",
+                "default_value": "\"Cancel\"",
+                "EXPLANATION": "Button text."
+            },
+            {
+                "argument-name": "textColor",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Button text color."
+            }
+        ]
+    },
+    {
+        "argument-name": "centerContent",
+        "TYPE": "boolean",
+        "default_value": "false",
+        "EXPLANATION": "Aligns the content center.  `true` or `false`."
+    },
+    {
+        "argument-name": "closeOnOverlayClick",
+        "TYPE": "boolean",
+        "default_value": "true",
+        "EXPLANATION": "Determines whether the modal should be closed after the overlay click."
+    },
+    {
+        "argument-name": "confirmButton",
+        "TYPE": "object",
+        "default_value": "no_default_value",
+        "EXPLANATION": "Confirm button configuration",
+        "configurations": [
+            {
+                "argument-name": "bgColor",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Button background color."
+            },
+            {
+                "argument-name": "borderColor",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Button border color."
+            },
+            {
+                "argument-name": "className",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Button ClassName."
+            },
+            {
+                "argument-name": "closeOnClick",
+                "TYPE": "boolean",
+                "default_value": "false",
+                "EXPLANATION": "Whether SilverBox closes on click or not."
+            },
+            {
+                "argument-name": "dataAttribute",
+                "TYPE": "object",
+                "default_value": "\" \"",
+                "EXPLANATION": "Specify desired html attribute by passing an object with key-value pairs. For example:  `{ hashId:'10012', lastStatus:'failed' }` will generate `data-hashId='10012'` and `data-lastStatus='failed'` for the appropriate button.  "
+            },
+            {
+                "argument-name": "disabled",
+                "TYPE": "boolean",
+                "default_value": "false",
+                "EXPLANATION": "Button disabled attribute."
+            },
+            {
+                "argument-name": "iconEnd",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Button icon at the end."
+            },
+            {
+                "argument-name": "iconStart",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Button icon at the start."
+            },
+            {
+                "argument-name": "id",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Button ID."
+            },
+            {
+                "argument-name": "loadingAnimation",
+                "TYPE": "boolean",
+                "default_value": "true",
+                "EXPLANATION": "Button loading animation on click."
+            },
+            {
+                "argument-name": "onClick",
+                "TYPE": "function",
+                "default_value": "\" \"",
+                "EXPLANATION": "Function to run when button is clicked."
+            },
+            {
+                "argument-name": "showButton",
+                "TYPE": "boolean",
+                "default_value": "true",
+                "EXPLANATION": "Show/Hide button."
+            },
+            {
+                "argument-name": "text",
+                "TYPE": "string",
+                "default_value": "\"Confirm\"",
+                "EXPLANATION": "Button text."
+            },
+            {
+                "argument-name": "textColor",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Button text color."
+            }
+        ]
+    },
+    {
+        "argument-name": "customButton",
+        "TYPE": "object",
+        "default_value": "no_default_value",
+        "EXPLANATION": "Custom button configuration",
+        "configurations": [
+            {
+                "argument-name": "bgColor",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Button background color."
+            },
+            {
+                "argument-name": "borderColor",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Button border color."
+            },
+            {
+                "argument-name": "className",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Button ClassName."
+            },
+            {
+                "argument-name": "closeOnClick",
+                "TYPE": "boolean",
+                "default_value": "false",
+                "EXPLANATION": "Whether SilverBox closes on click or not."
+            },
+            {
+                "argument-name": "dataAttribute",
+                "TYPE": "object",
+                "default_value": "\" \"",
+                "EXPLANATION": "Specify desired html attribute by passing an object with key-value pairs. For example:  `{ hashId:'10012', lastStatus:'failed' }` will generate `data-hashId='10012'` and `data-lastStatus='failed'` for the appropriate button.  "
+            },
+            {
+                "argument-name": "disabled",
+                "TYPE": "boolean",
+                "default_value": "false",
+                "EXPLANATION": "Button disabled attribute."
+            },
+            {
+                "argument-name": "iconEnd",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Button icon at the end."
+            },
+            {
+                "argument-name": "iconStart",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Button icon at the start."
+            },
+            {
+                "argument-name": "id",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Button ID."
+            },
+            {
+                "argument-name": "loadingAnimation",
+                "TYPE": "boolean",
+                "default_value": "true",
+                "EXPLANATION": "Button loading animation on click."
+            },
+            {
+                "argument-name": "onClick",
+                "TYPE": "function",
+                "default_value": "\" \"",
+                "EXPLANATION": "Function to run when button is clicked."
+            },
+            {
+                "argument-name": "showButton",
+                "TYPE": "boolean",
+                "default_value": "true",
+                "EXPLANATION": "Show/Hide button."
+            },
+            {
+                "argument-name": "text",
+                "TYPE": "string",
+                "default_value": "\"Custom\"",
+                "EXPLANATION": "Button text."
+            },
+            {
+                "argument-name": "textColor",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Button text color."
+            }
+        ]
+    },
+    {
+        "argument-name": "customIcon",
+        "TYPE": "string",
+        "default_value": "\" \"",
+        "EXPLANATION": "Path to a customIcon. For example  `customIcon: path/to/icon;` ."
+    },
+    {
+        "argument-name": "customIconClassName",
+        "TYPE": "string",
+        "default_value": "\" \"",
+        "EXPLANATION": "SilverBox custom icon class name."
+    },
+    {
+        "argument-name": "customIconId",
+        "TYPE": "string",
+        "default_value": "\" \"",
+        "EXPLANATION": "SilverBox custom icon id."
+    },
+    {
+        "argument-name": "customSvgIcon",
+        "TYPE": "string",
+        "default_value": "\" \"",
+        "EXPLANATION": "SilverBox custom svg icon element. For example:  `&lt;svg&gt; (your svg config here) &lt;/svg&gt;`."
+    },
+    {
+        "argument-name": "customSvgIconClassName",
+        "TYPE": "string",
+        "default_value": "\" \"",
+        "EXPLANATION": "SilverBox custom svg icon element class name."
+    },
+    {
+        "argument-name": "customSvgIconId",
+        "TYPE": "string",
+        "default_value": "\" \"",
+        "EXPLANATION": "SilverBox custom svg icon element id."
+    },
+    {
+        "argument-name": "denyButton",
+        "TYPE": "object",
+        "default_value": "no_default_value",
+        "EXPLANATION": "Deny button configuration",
+        "configurations": [
+            {
+                "argument-name": "bgColor",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Button background color."
+            },
+            {
+                "argument-name": "borderColor",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Button border color."
+            },
+            {
+                "argument-name": "className",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Button ClassName."
+            },
+            {
+                "argument-name": "closeOnClick",
+                "TYPE": "boolean",
+                "default_value": "false",
+                "EXPLANATION": "Whether SilverBox closes on click or not."
+            },
+            {
+                "argument-name": "dataAttribute",
+                "TYPE": "object",
+                "default_value": "\" \"",
+                "EXPLANATION": "Specify desired html attribute by passing an object with key-value pairs. For example:  `{ hashId:'10012', lastStatus:'failed' }` will generate `data-hashId='10012'` and `data-lastStatus='failed'` for the appropriate button.  "
+            },
+            {
+                "argument-name": "disabled",
+                "TYPE": "boolean",
+                "default_value": "false",
+                "EXPLANATION": "Button disabled attribute."
+            },
+            {
+                "argument-name": "iconEnd",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Button icon at the end."
+            },
+            {
+                "argument-name": "iconStart",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Button icon at the start."
+            },
+            {
+                "argument-name": "id",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Button ID."
+            },
+            {
+                "argument-name": "loadingAnimation",
+                "TYPE": "boolean",
+                "default_value": "true",
+                "EXPLANATION": "Button loading animation on click."
+            },
+            {
+                "argument-name": "onClick",
+                "TYPE": "function",
+                "default_value": "\" \"",
+                "EXPLANATION": "Function to run when button is clicked."
+            },
+            {
+                "argument-name": "showButton",
+                "TYPE": "boolean",
+                "default_value": "true",
+                "EXPLANATION": "Show/Hide button."
+            },
+            {
+                "argument-name": "text",
+                "TYPE": "string",
+                "default_value": "\"Deny\"",
+                "EXPLANATION": "Button text."
+            },
+            {
+                "argument-name": "textColor",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Button text color."
+            }
+        ]
+    },
+    {
+        "argument-name": "didOpen",
+        "TYPE": "function",
+        "default_value": "\" \"",
+        "EXPLANATION": "Function to run after silverBox is rendered."
+    },
+    {
+        "argument-name": "direction",
+        "TYPE": "string",
+        "default_value": "\" \"",
+        "EXPLANATION": "SilverBox HTML direction."
+    },
+    {
+        "argument-name": "footer",
+        "TYPE": "string",
+        "default_value": "\" \"",
+        "EXPLANATION": "HTML as SilverBox footer."
+    },
+    {
+        "argument-name": "html",
+        "TYPE": "string | HTMLElement",
+        "default_value": "\" \"",
+        "EXPLANATION": "HTML as SilverBox body. If  `text` parameter is given at the same time as `HTML` parameter, `text` will be ignored. examples: <a href='/recovery'>recover password</a> or `inputElement`"
+    },
+    {
+        "argument-name": "input",
+        "TYPE": "object | array",
+        "default_value": "no_default_value",
+        "EXPLANATION": "Input configuration. Can be an  `object` or an `array` of `objects`.",
+        "configurations": [
+            {
+                "argument-name": "className",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Input class."
+            },
+            {
+                "argument-name": "fontSize",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Input font size."
+            },
+            {
+                "argument-name": "height",
+                "TYPE": "string",
+                "default_value": "\"100%\"",
+                "EXPLANATION": "Input height."
+            },
+            {
+                "argument-name": "hint",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Input hint at the bottom."
+            },
+            {
+                "argument-name": "id",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Input id."
+            },
+            {
+                "argument-name": "label",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Input label."
+            },
+            {
+                "argument-name": "maxLength",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Input maxlength attribute."
+            },
+            {
+                "argument-name": "multiplyBy",
+                "TYPE": "number",
+                "default_value": "1",
+                "EXPLANATION": "Multiplies the input."
+            },
+            {
+                "argument-name": "name",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Input name attribute."
+            },
+            {
+                "argument-name": "numberOnly",
+                "TYPE": "boolean",
+                "default_value": "false",
+                "EXPLANATION": "Accept only numbers from user."
+            },
+            {
+                "argument-name": "placeHolder",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Input place holder."
+            },
+            {
+                "argument-name": "placeHolderFontSize",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Input placeHolder font size."
+            },
+            {
+                "argument-name": "readOnly",
+                "TYPE": "boolean",
+                "default_value": "false",
+                "EXPLANATION": "Input readonly attribute."
+            },
+            {
+                "argument-name": "textAlign",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Input text align."
+            },
+            {
+                "argument-name": "type",
+                "TYPE": "string",
+                "default_value": "\"text\"",
+                "EXPLANATION": "Input type. It can be  `text`, `number`, `textarea`, ..."
+            },
+            {
+                "argument-name": "value",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Input value."
+            },
+            {
+                "argument-name": "width",
+                "TYPE": "string",
+                "default_value": "\"100%\"",
+                "EXPLANATION": "Input width."
+            }
+        ]
+    },
+    {
+        "argument-name": "onClose",
+        "TYPE": "function",
+        "default_value": "\" \"",
+        "EXPLANATION": "Function to run when silverBox closes."
+    },
+    {
+        "argument-name": "position",
+        "TYPE": "string",
+        "default_value": "\" \"",
+        "EXPLANATION": "Position SilverBox in:  `top-right`, `top-center`, `top-left`, `bottom-right`, `bottom-center`, `bottom-left`."
+    },
+    {
+        "argument-name": "preOpen",
+        "TYPE": "function",
+        "default_value": "\" \"",
+        "EXPLANATION": "Function to run before silverBox is rendered."
+    },
+    {
+        "argument-name": "removeLoading",
+        "TYPE": "string",
+        "default_value": "\" \"",
+        "EXPLANATION": "Remove button loading animations. It can take  `first`, `last`, `all`, `number of the SilverBox` (like `'1'`)."
+    },
+    {
+        "argument-name": "removeSilverBox",
+        "TYPE": "string",
+        "default_value": "\" \"",
+        "EXPLANATION": "Remove previous silverBoxes. It can take  `first`, `last`, `all`, `number of the SilverBox` (like `'1'`)."
+    },
+    {
+        "argument-name": "showCloseButton",
+        "TYPE": "boolean",
+        "default_value": "false",
+        "EXPLANATION": "Shows a small 'x' on the top of SilverBox."
+    },
+    {
+        "argument-name": "silverBoxClassName",
+        "TYPE": "string",
+        "default_value": "\" \"",
+        "EXPLANATION": "SilverBox custom class name."
+    },
+    {
+        "argument-name": "silverBoxId",
+        "TYPE": "string",
+        "default_value": "\" \"",
+        "EXPLANATION": "SilverBox custom ID."
+    },
+    {
+        "argument-name": "text",
+        "TYPE": "string",
+        "default_value": "\" \"",
+        "EXPLANATION": "Text as SilverBox body. If  `text` parameter is given at the same time as `HTML` parameter, `text` will be ignored."
+    },
+    {
+        "argument-name": "theme",
+        "TYPE": "string",
+        "default_value": "\"light\"",
+        "EXPLANATION": "Changes SilverBox theme. Predefined themes:  `light`, `dark`."
+    },
+    {
+        "argument-name": "timer",
+        "TYPE": "number | string | object",
+        "default_value": "no_default_value",
+        "EXPLANATION": "Timer config to close silverBox after a given time. It can be treated as  `duration` if you do not need other configs. For example: `timer: 1000ms`  <br /> and <br /> `timer: { duration:'1000ms' , pauseOnHover: false} `",
+        "configurations": [
+            {
+                "argument-name": "duration",
+                "TYPE": "number | string",
+                "default_value": "0",
+                "EXPLANATION": "Timer duration in milliseconds (300ms) or seconds (0.3s) to close silverBox. The default unit is  `ms` if no unit is provided."
+            },
+            {
+                "argument-name": "pauseOnHover",
+                "TYPE": "boolean",
+                "default_value": "true",
+                "EXPLANATION": "Pause timer when mouse hovers on SilverBox."
+            },
+            {
+                "argument-name": "showBar",
+                "TYPE": "boolean",
+                "default_value": "true",
+                "EXPLANATION": "Show timer bar bellow SilverBox."
+            }
+        ]
+    },
+    {
+        "argument-name": "title",
+        "TYPE": "string | object",
+        "default_value": "no_default_value",
+        "EXPLANATION": "SilverBox title. It can be a string or an object.",
+        "configurations": [
+            {
+                "argument-name": "alertIcon",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Predefined title icons including:  `success`, `error`, `warning`, `info`, `question`."
+            },
+            {
+                "argument-name": "customIcon",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Path to a title custom icon. For example  `customIcon: path/to/icon;` ."
+            },
+            {
+                "argument-name": "customIconClassName",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "SilverBox title custom icon class."
+            },
+            {
+                "argument-name": "customIconId",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "SilverBox title custom icon id."
+            },
+            {
+                "argument-name": "customSvgIcon",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "SilverBox custom svg icon element. For example:  `&lt;svg&gt; (your svg config here) &lt;/svg&gt;`."
+            },
+            {
+                "argument-name": "customSvgIconClassName",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "SilverBox custom svg icon element class name."
+            },
+            {
+                "argument-name": "customSvgIconId",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "SilverBox custom svg icon element id."
+            },
+            {
+                "argument-name": "text",
+                "TYPE": "string",
+                "default_value": "\" \"",
+                "EXPLANATION": "Title text"
+            }
+        ]
+    }
+]
