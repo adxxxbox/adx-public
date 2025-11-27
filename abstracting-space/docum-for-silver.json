@@ -10,7 +10,7 @@
         "TYPE": "object | array",
         "default_value": "no_default_value",
         "EXPLANATION": "Custom animation. It can ba an object or an array of objects.",
-        "configurations": [
+        "configs": [
             {
                 "argument-name": "delay",
                 "TYPE": "string | number",
@@ -66,7 +66,7 @@
         "TYPE": "object",
         "default_value": "no_default_value",
         "EXPLANATION": "Cancel button configuration",
-        "configurations": [
+        "configs": [
             {
                 "argument-name": "bgColor",
                 "TYPE": "string",
@@ -170,7 +170,7 @@
         "TYPE": "object",
         "default_value": "no_default_value",
         "EXPLANATION": "Confirm button configuration",
-        "configurations": [
+        "configs": [
             {
                 "argument-name": "bgColor",
                 "TYPE": "string",
@@ -262,7 +262,7 @@
         "TYPE": "object",
         "default_value": "no_default_value",
         "EXPLANATION": "Custom button configuration",
-        "configurations": [
+        "configs": [
             {
                 "argument-name": "bgColor",
                 "TYPE": "string",
@@ -390,7 +390,7 @@
         "TYPE": "object",
         "default_value": "no_default_value",
         "EXPLANATION": "Deny button configuration",
-        "configurations": [
+        "configs": [
             {
                 "argument-name": "bgColor",
                 "TYPE": "string",
@@ -506,7 +506,7 @@
         "TYPE": "object | array",
         "default_value": "no_default_value",
         "EXPLANATION": "Input configuration. Can be an  `object` or an `array` of `objects`.",
-        "configurations": [
+        "configs": [
             {
                 "argument-name": "className",
                 "TYPE": "string",
@@ -676,7 +676,7 @@
         "TYPE": "number | string | object",
         "default_value": "no_default_value",
         "EXPLANATION": "Timer config to close silverBox after a given time. It can be treated as  `duration` if you do not need other configs. For example: `timer: 1000ms`  <br /> and <br /> `timer: { duration:'1000ms' , pauseOnHover: false} `",
-        "configurations": [
+        "configs": [
             {
                 "argument-name": "duration",
                 "TYPE": "number | string",
@@ -702,7 +702,7 @@
         "TYPE": "string | object",
         "default_value": "no_default_value",
         "EXPLANATION": "SilverBox title. It can be a string or an object.",
-        "configurations": [
+        "configs": [
             {
                 "argument-name": "alertIcon",
                 "TYPE": "string",
