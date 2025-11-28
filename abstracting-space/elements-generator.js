@@ -1,145 +1,219 @@
+/**
+ * Lightweight helpers and corrected element generators
+ */
 
-function createPageTail(tailId) {
-  // will make style: inset-0 flex items-center justify-center z-50
-  let tailStyle = `
-    inset: 0;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 50;`;
-  const pageTail = document.createElement("div");
-  pageTail.id = tailId;
-  pageTail.style.cssText = tailStyle;
-  return pageTail;
+/** Deep merge for nested defaults */
+function mergeDeep(target = {}, ...sources) {
+    for (const src of sources) {
+        if (!src) continue;
+        for (const key of Object.keys(src)) {
+            const val = src[key];
+            if (val && typeof val === "object" && !Array.isArray(val)) {
+                target[key] = mergeDeep(target[key] || {}, val);
+            } else {
+                target[key] = val;
+            }
+        }
+    }
+    return target;
 }
 
-function createRightBottomDialog(dialogSettings) {
-  let defaultDialogSettings = [
-    (outerContainerSettings = {
-      id: "write-id-here",
-      position: "fixed", // BETTER NOT TO CHANGE THIS, as it's what makes it fixed to screen. Change later if you understand it.
-      bottom: "80px",
-      right: "20px",
-      background: "#2d2d2d", // BETTER NOT TO CHANGE THIS
-      border: "1px solid #555", // BETTER NOT TO CHANGE THIS
-      borderRadius: "6px", // BETTER NOT TO CHANGE THIS
-      boxShadow: "0 2px 10px rgba(0,0,0,0.5)",
-      width: "280px", // can be % or px, adjust as needed. default is 280px. % would be relative to viewport.
-      maxHeight: "70vh", // vh means viewport height, so it scales with screen size (exactly equivalent to % of screen height)
-      fontFamily: "Arial, sans-serif",
-      fontSize: "13px",
-      color: "#ffffff", // BETTER NOT TO CHANGE THIS
-      display: "flex",
-      flexDirection: "column", // BETTER NOT TO CHANGE THIS
-    }),
-    (innerContainerSettings = {
-      id: "",
-      scrollable: "auto", // BETTER NOT TO CHANGE THIS
-      padding: "1%", // BETTER NOT TO CHANGE THIS
-    }),
-  ];
-  // will use whatever is passed in dialog
-  dialogSettings = { ...defaultDialogSettings, ...dialogSettings };
-
-  // Create compact dialog container positioned in bottom-right corner with scrollable content
-  const rightBottomDialog = document.createElement("div");
-  // Give the dialog a unique id for easy recognition
-  rightBottomDialog.id = dialogSettings.outerContainerSettings.id;
-  rightBottomDialog.style.cssText = `
-            position: ${dialogSettings.outerContainerSettings.position};
-            bottom: ${dialogSettings.outerContainerSettings.bottom};
-            right: ${dialogSettings.outerContainerSettings.right};
-            background: ${dialogSettings.outerContainerSettings.background};
-            border: ${dialogSettings.outerContainerSettings.border};
-            border-radius: ${dialogSettings.outerContainerSettings.borderRadius};
-            box-shadow: ${dialogSettings.outerContainerSettings.boxShadow};
-            z-index: 2147483647;
-            width: ${dialogSettings.outerContainerSettings.width};
-            max-height: ${dialogSettings.outerContainerSettings.maxHeight};
-            font-family: ${dialogSettings.outerContainerSettings.fontFamily};
-            font-size: ${dialogSettings.outerContainerSettings.fontSize};
-            color: ${dialogSettings.outerContainerSettings.color};
-            display: ${dialogSettings.outerContainerSettings.display};
-            flex-direction: ${dialogSettings.outerContainerSettings.flexDirection};
-        `;
-
-  // Create scrollable content container
-  const scrollContainer = document.createElement("div");
-  scrollContainer.style.cssText = `
-            overflow-y: ${dialogSettings.innerContainerSettings.scrollable};
-            overflow-x: hidden;
-            max-height: fit-content;
-            padding: ${dialogSettings.innerContainerSettings.padding};
-            scrollbar-width: thin;
-            scrollbar-color: #555 #2d2d2d;
-        `;
+/** Apply style object (camelCase or dashed) to element */
+function applyStyles(el, styles = {}) {
+    const parts = [];
+    for (const key in styles) {
+        // accept both camelCase and CSS property names
+        const cssKey = key.replace(/[A-Z]/g, (m) => `-${m.toLowerCase()}`);
+        parts.push(`${cssKey}: ${styles[key]}`);
+    }
+    el.style.cssText = parts.join("; ");
+    return el;
 }
-// ===
-// ===
-// ===
-// ===
-// ===
 
+/** Create a page tail (centered overlay container) */
+function createPageTail(tailId, style = {}) {
+    const defaultStyle = {
+        id: tailId || "page-tail",
+        inset: "0",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        zIndex: "50",
+    };
+    const pageTail = document.createElement("div");
+    pageTail.id = defaultStyle.id;
+    applyStyles(pageTail, mergeDeep({}, defaultStyle, style));
+    return pageTail;
+}
+
+/** Create a bottom-right dialog (returns element with scroll container appended) */
+function createRightBottomDialog(dialogSettings = {}) {
+    const defaultDialogSettings = {
+        outerContainerSettings: {
+            id: "write-id-here",
+            position: "fixed",
+            bottom: "80px",
+            right: "20px",
+            background: "#2d2d2d",
+            border: "1px solid #555",
+            borderRadius: "6px",
+            boxShadow: "0 2px 10px rgba(0,0,0,0.5)",
+            width: "280px",
+            maxHeight: "70vh",
+            fontFamily: "Arial, sans-serif",
+            fontSize: "13px",
+            color: "#ffffff",
+            display: "flex",
+            flexDirection: "column",
+            zIndex: "2147483647",
+            padding: "0",
+        },
+        innerContainerSettings: {
+            id: "",
+            scrollable: "auto",
+            padding: "8px",
+            overflowX: "hidden",
+            scrollbarWidth: "thin",
+        },
+    };
+
+    const settings = mergeDeep({}, defaultDialogSettings, dialogSettings);
+
+    const rightBottomDialog = document.createElement("div");
+    rightBottomDialog.id = settings.outerContainerSettings.id || "";
+    applyStyles(rightBottomDialog, settings.outerContainerSettings);
+
+    const scrollContainer = document.createElement("div");
+    if (settings.innerContainerSettings.id) scrollContainer.id = settings.innerContainerSettings.id;
+    applyStyles(scrollContainer, {
+        overflowY: settings.innerContainerSettings.scrollable,
+        overflowX: settings.innerContainerSettings.overflowX || "hidden",
+        maxHeight: "inherit",
+        padding: settings.innerContainerSettings.padding,
+        scrollbarWidth: settings.innerContainerSettings.scrollbarWidth,
+        background: "transparent",
+    });
+
+    rightBottomDialog.appendChild(scrollContainer);
+
+    // expose a small API on the element for convenience
+    rightBottomDialog.content = () => scrollContainer;
+    rightBottomDialog.setContent = (nodeOrHtml) => {
+        scrollContainer.innerHTML = "";
+        if (typeof nodeOrHtml === "string") {
+            scrollContainer.innerHTML = nodeOrHtml;
+        } else {
+            scrollContainer.appendChild(nodeOrHtml);
+        }
+    };
+
+    return rightBottomDialog;
+}
+
+/** Create header element (returns DOM element) */
 function createHeader(headerStyle = {}) {
-  let defaultHeaderStyle = {
-    headerNumber: 4,
-    headerText: "Header Text Here",
-    margin: "0 0 12px 0",
-    color: "inherit",
-    fontSize: "14px",
-  };
-  headerStyle = { ...defaultHeaderStyle, ...headerStyle };
-  return `<h${headerStyle.headerNumber} style="margin: ${headerStyle.margin}; color: ${headerStyle.color}; font-size: ${headerStyle.fontSize};">${headerStyle.headerText}</h${headerStyle.headerNumber}>`;
+    const defaultHeaderStyle = {
+        headerNumber: 4,
+        headerText: "Header Text Here",
+        margin: "0 0 12px 0",
+        color: "inherit",
+        fontSize: "14px",
+    };
+    const cfg = mergeDeep({}, defaultHeaderStyle, headerStyle);
+    const h = document.createElement(`h${cfg.headerNumber}`);
+    h.textContent = cfg.headerText;
+    applyStyles(h, { margin: cfg.margin, color: cfg.color, fontSize: cfg.fontSize });
+    return h;
 }
 
+/** Create button element (returns DOM element) */
 function createButton(buttonStyle = {}) {
-  let defaultButtonStyle = {
-    buttonId: "button-id",
-    buttonText: "Button",
-    backgroundColor: "#525557ff",
-    color: "white",
-    border: "none",
-    padding: "6px 12px",
-    borderRadius: "3px",
-    cursor: "pointer",
-    marginRight: "5px",
-    fontSize: "12px",
-  };
-  buttonStyle = { ...defaultButtonStyle, ...buttonStyle };
-  return `<button id="${buttonStyle.buttonId}" style="background: ${buttonStyle.backgroundColor}; color: ${buttonStyle.color}; border: ${buttonStyle.border}; padding: ${buttonStyle.padding}; border-radius: ${buttonStyle.borderRadius}; cursor: ${buttonStyle.cursor}; margin-right: ${buttonStyle.marginRight}; font-size: ${buttonStyle.fontSize};">${buttonStyle.buttonText}</button>`;
+    const defaultButtonStyle = {
+        buttonId: "button-id",
+        buttonText: "Button",
+        backgroundColor: "#525557ff",
+        color: "white",
+        border: "none",
+        padding: "6px 12px",
+        borderRadius: "3px",
+        cursor: "pointer",
+        marginRight: "5px",
+        fontSize: "12px",
+    };
+    const cfg = mergeDeep({}, defaultButtonStyle, buttonStyle);
+    const btn = document.createElement("button");
+    btn.id = cfg.buttonId;
+    btn.textContent = cfg.buttonText;
+    applyStyles(btn, {
+        background: cfg.backgroundColor,
+        color: cfg.color,
+        border: cfg.border,
+        padding: cfg.padding,
+        borderRadius: cfg.borderRadius,
+        cursor: cfg.cursor,
+        marginRight: cfg.marginRight,
+        fontSize: cfg.fontSize,
+    });
+    return btn;
 }
 
-function createDivWithContent(divId, divStyle, contentFunctions) {
-  // generates a div with inner html content generated by the functions passed in the contentFunctions array
-  let divId = "div-id";
-  let divStyle =
-    "display: flex; gap: 4px; margin-bottom: 4px; align-items: center;";
-  const div = document.createElement("div");
-  div.id = divId;
-  div.style.cssText = divStyle;
-  contentFunctions.forEach((func) => {
-    div.innerHTML += func();
-  });
-  return div;
+/** Create a div with content functions -> returns element */
+function createDivWithContent(divId = "div-id", divStyle = "display: flex; gap: 4px; margin-bottom: 4px; align-items: center;", contentFunctions = []) {
+    const div = document.createElement("div");
+    div.id = divId;
+    div.style.cssText = divStyle;
+    contentFunctions.forEach((func) => {
+        const result = func();
+        if (typeof result === "string") {
+            // append as HTML snippet
+            const wrapper = document.createElement("span");
+            wrapper.innerHTML = result;
+            while (wrapper.firstChild) div.appendChild(wrapper.firstChild);
+        } else if (result instanceof Node) {
+            div.appendChild(result);
+        }
+    });
+    return div;
 }
 
+/** Create input element */
 function createInputField(inputStyle = {}) {
-  let defaultInputStyle = {
-    inputId: "input-id",
-    inputType: "text",
-    inputPlaceholder: "Enter value",
-    inputStyle:
-      "flex: 1; padding: 4px; border: 1px solid #555; border-radius: 3px; background: #404040; color: #ffffff; font-size: 11px;",
-  };
-  inputStyle = { ...defaultInputStyle, ...inputStyle };
-  return `<input type="${inputStyle.inputType}" id="${inputStyle.inputId}" placeholder="${inputStyle.inputPlaceholder}" style="${inputStyle.inputStyle}">`;
+    const defaultInputStyle = {
+        inputId: "input-id",
+        inputType: "text",
+        inputPlaceholder: "Enter value",
+        inputStyle: {
+            flex: "1",
+            padding: "4px",
+            border: "1px solid #555",
+            borderRadius: "3px",
+            background: "#404040",
+            color: "#ffffff",
+            fontSize: "11px",
+        },
+    };
+    const cfg = mergeDeep({}, defaultInputStyle, inputStyle);
+    const input = document.createElement("input");
+    input.type = cfg.inputType;
+    input.id = cfg.inputId;
+    input.placeholder = cfg.inputPlaceholder;
+    applyStyles(input, cfg.inputStyle);
+    return input;
 }
 
+/** Create span element */
 function createSpan(spanStyle = {}) {
-  let defaultSpanStyle = {
-    spanText: "Span Text Here",
-    spanStyle: "color: #ccc; font-size: 11px;",
-  };
-  spanStyle = { ...defaultSpanStyle, ...spanStyle };
-  return `<span style="${spanStyle.spanStyle}">${spanStyle.spanText}</span>`;
+    const defaultSpanStyle = {
+        spanText: "Span Text Here",
+        spanStyle: {
+            color: "#ccc",
+            fontSize: "11px",
+        },
+    };
+    const cfg = mergeDeep({}, defaultSpanStyle, spanStyle);
+    const s = document.createElement("span");
+    s.textContent = cfg.spanText;
+    applyStyles(s, cfg.spanStyle);
+    return s;
 }
