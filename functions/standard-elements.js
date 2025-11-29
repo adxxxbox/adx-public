@@ -92,7 +92,7 @@ function showToast(message, type = "info") { // show a toast notification ("info
     toast.remove();
   }, 3000);
 };
-function createAdxDropdown(dropdownId, optionsArray, cssText) {
+function createAdxDropdown(dropdownId, optionsArray, cssText) { // create a dropdown (select) element
   const select = document.createElement("select");
   select.id = dropdownId;
   select.className = "w-full p-1 text-xs border border-gray-300 dark:border-gray-600 rounded dark:bg-gray-700 dark:text-white";
@@ -104,8 +104,8 @@ function createAdxDropdown(dropdownId, optionsArray, cssText) {
     select.appendChild(optionElement);
   });
   return select;
-}
-function createAdxLabeledCheckbox(labelText, isChecked = false, cssText) {
+};
+function createAdxLabeledCheckbox(labelText, isChecked = false, cssText) { // create a labeled checkbox
   const label = document.createElement("label");
   label.className = "flex items-center text-xs text-gray-600 dark:text-gray-400 ml-2";
   if (cssText) label.style.cssText = cssText;
@@ -120,8 +120,8 @@ function createAdxLabeledCheckbox(labelText, isChecked = false, cssText) {
   label.appendChild(checkbox);
   label.appendChild(textNode);
   return label;
-}
-function createAdxTextarea(placeholderText, textContent = "", cssText) {
+};
+function createAdxTextarea(placeholderText, textContent = "", cssText) { // create a textarea with standard styling
   const textarea = document.createElement("textarea");
   textarea.id = placeholderText.toLowerCase().replace(/\s+/g, "-") + "-textarea";
   textarea.rows = 2;
@@ -131,7 +131,7 @@ function createAdxTextarea(placeholderText, textContent = "", cssText) {
   textarea.textContent = textContent;
   return textarea;
 }
-function createAdxSimpleLabel(labelText, cssText) {
+function createAdxSimpleLabel(labelText, cssText) { // create a simple label element
   const label = document.createElement("label");
   label.className = "block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1";
   if (cssText) label.style.cssText = cssText;
