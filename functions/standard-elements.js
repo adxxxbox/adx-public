@@ -1,4 +1,5 @@
 // these are standard elements used in my scripts .. given that I will always use the same styling, I have decided to make them kind of a library for reuse. I want to use them as @require in my userscripts.
+// @require https://raw.githubusercontent.com/adxxxbox/adx-public/refs/heads/main/functions/standard-elements.js
 
 function createAdxDialog(dialogId, cssText, scrollCssText) { // create a dialog, scrollable, nice, fixed to bottom right, and non intrusive.
   const dialog = document.createElement("div");

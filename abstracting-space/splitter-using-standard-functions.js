@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         ChatGPT Splitter
+// @name          Splitter using my elements
 // @namespace    http://tampermonkey.net/
 // @version      2025-06-17
 // @description  Split long prompts for ChatGPT
@@ -7,42 +7,344 @@
 // @match        https://chatgpt.com/*
 // @match        https://chat.openai.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=openai.com
+// @require      https://raw.githubusercontent.com/adxxxbox/adx-public/refs/heads/main/functions/standard-elements.js
 // @grant        GM_setValue
 // @grant        GM_getValue
 // @grant        GM_xmlhttpRequest
 // ==/UserScript==
+
+const { createElement } = require("react");
+
 (function () {
   "use strict";
+  // these are standard elements used in my scripts .. given that I will always use the same styling, I have decided to make them kind of a library for reuse. I want to use them as @require in my userscripts.
+  // @require https://raw.githubusercontent.com/adxxxbox/adx-public/refs/heads/main/functions/standard-elements.js
+          // Helper to append multiple children to a parent
+          function appendChildren(parent, children) {
+            children.forEach(child => parent.appendChild(child));
+            return parent;
+          }
+  function createAdxDialog(dialogId, cssText, scrollCssText) {
+    // create a dialog, scrollable, nice, fixed to bottom right, and non intrusive.
+    const dialog = document.createElement("div");
+    dialog.id = dialogId || `unnamed-dialog-${Date.now()}`;
+    dialog.style.cssText =
+      cssText ||
+      `
+            position: fixed !important;
+            bottom: 80px !important;
+            right: 20px !important;
+            background: #2d2d2d !important;
+            border: 1px solid #555 !important;
+            border-radius: 6px !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5) !important;
+            z-index: 2147483647 !important;
+            width: 280px !important;
+            max-height: 70vh !important;
+            font-family: Arial, sans-serif !important;
+            font-size: 13px !important;
+            color: #ffffff !important;
+            display: flex !important;
+            flex-direction: column !important;
+        `;
+    const scrollContainer = document.createElement("div");
+    scrollContainer.style.cssText =
+      scrollCssText ||
+      `
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+            max-height: calc(70vh - 24px) !important;
+            padding: 12px !important;
+            scrollbar-width: thin !important;
+            scrollbar-color: #555 #2d2d2d !important;
+        `;
+    dialog.appendChild(scrollContainer);
+    document.body.appendChild(dialog);
+  }
+  function createAdxHeadingElement(content, level, cssText) {
+    // create a heading element (pass h1, h2, h3, etc as string)
+    // level is "h1", "h2", "h3", "h4", etc
+    const heading = document.createElement(level);
+    heading.style.cssText = cssText || `margin: 0 0 12px 0; color: #ffffff`;
+    heading.textContent = content;
+    return heading;
+  }
+  function createAdxDivContainer(cssText) {
+    // a div container for grouping elements
+    const container = document.createElement("div");
+    container.style.cssText =
+      cssText ||
+      `text-align: center; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #555;`;
+    return container;
+  }
+  function createAdxButton(
+    buttonText,
+    backgroundColor,
+    textColor,
+    fontSize,
+    cssText
+  ) {
+    // create a button with standard styling
+    const button = document.createElement("button");
+    const buttonId = `button-${buttonText.replace(/\s+/g, "").toLowerCase()}`;
+    button.id = buttonId;
+    button.textContent = buttonText;
+    button.style.cssText =
+      cssText ||
+      `
+        border: none;
+        padding: 6px 12px;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: ${fontSize || "12px"};
+        background: ${backgroundColor || "#19312aff"}; 
+        color: ${textColor} || "#ffffff"};
+    `;
+    return button;
+  }
+  function createAdxTextInput(placeholderText, cssText) {
+    // create a text input with standard styling
+    const input = document.createElement("input");
+    const inputId = `input-${placeholderText
+      .replace(/\s+/g, "")
+      .toLowerCase()}`;
+    input.id = inputId;
+    input.type = "text";
+    input.placeholder = placeholderText;
+    input.style.cssText =
+      cssText ||
+      `
+        flex: 1;
+        padding: 4px;
+        border: 1px solid #555;
+        border-radius: 3px;
+        background: #404040;
+        color: #ffffff;
+        font-size: 11px;
+    `;
+    return input;
+  }
+  function showToast(message, type = "info") {
+    // show a toast notification ("info", "success", "error"). Defaults to "info".
+    const toast = document.createElement("div");
+    toast.className = `fixed top-4 right-4 p-4 rounded-md z-50 ${
+      type === "error"
+        ? "bg-red-500 text-white"
+        : type === "success"
+        ? "bg-green-500 text-white"
+        : "bg-blue-500 text-white"
+    }`;
+    toast.innerHTML = message;
+    document.body.appendChild(toast);
+    setTimeout(() => {
+      toast.remove();
+    }, 3000);
+  }
+  function createAdxDropdown(dropdownId, optionsArray, cssText) {
+    // create a dropdown (select) element
+    const select = document.createElement("select");
+    select.id = dropdownId;
+    select.className =
+      "w-full p-1 text-xs border border-gray-300 dark:border-gray-600 rounded dark:bg-gray-700 dark:text-white";
+    if (cssText) select.style.cssText = cssText;
+    optionsArray.forEach((option) => {
+      const optionElement = document.createElement("option");
+      optionElement.value = option.value;
+      optionElement.textContent = option.text;
+      select.appendChild(optionElement);
+    });
+    return select;
+  }
+  function createAdxLabeledCheckbox(labelText, isChecked = false, cssText) {
+    // create a labeled checkbox
+    const label = document.createElement("label");
+    label.className =
+      "flex items-center text-xs text-gray-600 dark:text-gray-400 ml-2";
+    if (cssText) label.style.cssText = cssText;
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.id = labelText.toLowerCase().replace(/\s+/g, "-") + "-checkbox";
+    if (isChecked) {
+      checkbox.checked = true;
+    }
+    checkbox.className = "mr-1";
+    const textNode = document.createTextNode(labelText);
+    label.appendChild(checkbox);
+    label.appendChild(textNode);
+    return label;
+  }
+  function createAdxTextarea(placeholderText, textContent = "", cssText) {
+    // create a textarea with standard styling
+    const textarea = document.createElement("textarea");
+    textarea.id =
+      placeholderText.toLowerCase().replace(/\s+/g, "-") + "-textarea";
+    textarea.rows = 2;
+    textarea.className =
+      "w-full p-1 text-xs border border-gray-300 dark:border-gray-600 rounded dark:bg-gray-700 dark:text-white";
+    if (cssText) textarea.style.cssText = cssText;
+    textarea.placeholder = placeholderText;
+    textarea.textContent = textContent;
+    return textarea;
+  }
+  function createAdxSimpleLabel(labelText, cssText) {
+    // create a simple label element
+    const label = document.createElement("label");
+    label.className =
+      "block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1";
+    if (cssText) label.style.cssText = cssText;
+    label.textContent = labelText;
+    return label;
+  }
 
-// TODO: Make a CONFIG section at the top to easily adjust settings. It should contain info and configs related to API, delays settings (like send delay, and response check delay), and default values in case of no saved settings.
-    /* Some info to include:
-    API URL: "https://script.google.com/macros/s/AKfycbwhzJXqzziExl5uLY2djhOiaEtzfLCKprWYIAJTK7tqTw7KCFf5kFKH9Lfl9LGXCdlFnw/exec".
-    SPLITTER defaults: delimiter, chunkPrompt, useRegex, randomDelayMin, randomDelayMax.
-     */
-// ---
-// TODO: make a gmStorageManager module to handle getting/setting values from GM storage. It should have the following functions:
-  // - setSettings(settingsToStore, settingsLabel): takes a settings object and stores it as a JSON string in GM storage labeled by settingsLabel
-  // - getSettings(settingsLabel, defaults): loads settings object from GM storage and parse them, and if not found, returns the provided defaults object
-  // - setLastState(lastStateObject, lastStateLabel): stores the last state object as a JSON string in GM storage
-  // - getLastState(lastStateLabel): loads last state object from GM storage and parse it, or returns defaults if not found
+  //================
+  //================
+  //================
+  //================
+  //================
+  //================
+  //================
+  //================
 
-// ---
-// TODO: general little helpers
-  // - debounce(func, wait): standard debounce function to limit how often a function can be called
+  // Configuration object for easy reconfiguration
+  // Only keep chunk prompt in config
+  const CONFIG = {
+    API: {
+      ENABLED: true,
+      URL: "https://script.google.com/macros/s/AKfycbwhzJXqzziExl5uLY2djhOiaEtzfLCKprWYIAJTK7tqTw7KCFf5kFKH9Lfl9LGXCdlFnw/exec",
+      TIMEOUT: 10000,
+    },
+    UI: {
+      SEND_DELAY: 300,
+      RESPONSE_CHECK_INTERVAL: 1000,
+      INITIAL_RESPONSE_DELAY: 2000,
+      RANDOM_DELAY_MIN: 100,
+      RANDOM_DELAY_MAX: 500,
+    },
+    SPLITTER: {
+      DEFAULT_DELIMITER: "\n\n---\n\n",
+      DEFAULT_CHUNK_PROMPT: "And this.",
+    },
+    DEBUG: {
+      ENABLED: true,
+      LOG_CHUNKS: true,
+      LOG_TIMING: true,
+    },
+  };
 
-// ---
+  // Storage Manager - handles saving/loading all splitter settings as a single object
+  const StorageManager = {
+    // Loads settings object from GM storage, or returns defaults if not found
+    getSplitterSettings() {
+      // Try to get the JSON string from storage
+      const saved = GM_getValue("splitter_settings", null);
+      if (saved) {
+        try {
+          // Parse and return the object if found
+          const obj = JSON.parse(saved);
+          // Print the loaded settings object for debugging and learning
+          console.log("[Splitter Settings Loaded]", obj);
+          return obj;
+        } catch (e) {
+          // If parsing fails, fall back to defaults
+          console.warn("Failed to parse saved settings, using defaults.", e);
+        }
+      }
+      // Only keep chunkPrompt in defaults
+      const defaults = {
+        delimiter: CONFIG.SPLITTER.DEFAULT_DELIMITER,
+        chunkPrompt: CONFIG.SPLITTER.DEFAULT_CHUNK_PROMPT,
+        useRegex: false,
+        randomDelayMin: CONFIG.UI.RANDOM_DELAY_MIN,
+        randomDelayMax: CONFIG.UI.RANDOM_DELAY_MAX,
+      };
+      // Print the default settings object for debugging and learning
+      console.log("[Splitter Settings Defaults]", defaults);
+      return defaults;
+    },
+    // Saves the settings object as a JSON string in GM storage
+    setSplitterSettings(settings) {
+      // Save the whole object as a JSON string
+      GM_setValue("splitter_settings", JSON.stringify(settings));
+    },
+    getLastState() {
+      const defaults = {
+        text: "",
+        source: null,
+        fileName: "",
+        lastConfigIndex: 0,
+        timestamp: 0,
+      };
+      const saved = GM_getValue("splitter_last_state", null);
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          return { ...defaults, ...parsed };
+        } catch (error) {
+          console.warn(
+            "Failed to parse saved splitter state, using defaults.",
+            error
+          );
+        }
+      }
+      return { ...defaults };
+    },
+    setLastState(state) {
+      const current = this.getLastState();
+      const updatedState = {
+        ...current,
+        ...state,
+        timestamp: Date.now(),
+      };
+      GM_setValue("splitter_last_state", JSON.stringify(updatedState));
+    },
+    updateLastState(partialState) {
+      this.setLastState(partialState);
+    },
+  };
 
-// TODO: uiUtilities module.
-  // isDarkMode(): returns true if dark mode is enabled on the page
-  // - showTopCenterToast(message, color): the color parameter can be 'red', 'green', 'blue', etc. .. depending on the type of toast .. generally, will use red for errors, green for success, blue for info
-  // - createModal(modalId, theme): creates and shows a modal with the given ID. The theme parameter can be 'dark' or 'light' to set the modal theme accordingly.
-  // - closeModal(modalId): closes and removes a modal by its ID
+  // UI Utilities - helper functions for interface management
+  const UIUtils = {
+    isDarkMode() {
+      return (
+        document.documentElement.classList.contains("dark") ||
+        document.body.classList.contains("dark")
+      );
+    },
+    showToast(message, type = "info") {
+      const toast = document.createElement("div");
+      toast.className = `fixed top-4 right-4 p-4 rounded-md z-50 ${
+        type === "error"
+          ? "bg-red-500 text-white"
+          : type === "success"
+          ? "bg-green-500 text-white"
+          : "bg-blue-500 text-white"
+      }`;
+      toast.innerHTML = message;
+      document.body.appendChild(toast);
+      setTimeout(() => {
+        toast.remove();
+      }, 3000);
+    },
+    debounce(func, wait) {
+      let timeout;
+      return function executedFunction(...args) {
+        const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
+    },
+    closeModal(modalId) {
+      const modal = document.querySelector(`#${modalId}`);
+      if (modal) {
+        modal.remove();
+      }
+    },
+  };
 
-// ---// TODO: splitterManager module
-    // - splitText(text, delimiter, useRegex): splits text into chunks using the delimiter. If useRegex is true, treats delimiter as a regex pattern. Returns an array of text chunks. Filter out empty chunks or chunks with only whitespaces or newlines.
-
-
-
+  // Splitter functionality - handles text splitting and chunk generation
   const TextSplitter = {
     // Splits text into chunks using delimiter or regex
     splitText(text, delimiter, useRegex = false) {
@@ -60,7 +362,7 @@
         console.error("Error splitting text:", error);
         return [text];
       }
-    }, 
+    },
     // For each chunk, append the chunkPrompt after the chunk (for all chunks)
     generateChunks(text, settings) {
       const { delimiter, chunkPrompt, useRegex } = settings;
@@ -80,6 +382,8 @@
     },
   };
 
+  // Text Input Manager - simple module to handle both file and paste text input
+  // This keeps track of what text we're working with, whether from file or paste
   const TextInputManager = {
     currentText: "", // Stores the text we'll split
     source: null,
@@ -148,6 +452,7 @@
     },
   };
 
+  // Chunk Chain Manager - handles sequential sending of chunks with pause/resume controls
   const ChunkChainManager = {
     currentChunks: [],
     currentIndex: 0,
@@ -404,6 +709,7 @@
   let splitterApiConfig = null;
 
   // Create the splitter modal popup (fields update if API fetch finishes later)
+  // Modified splitter modal to include config dropdown and refresh button
   function createSplitterModal() {
     let currentSettings = StorageManager.getSplitterSettings();
     const lastState = StorageManager.getLastState();
@@ -425,98 +731,72 @@
       .join("");
 
     const settings = currentSettings;
+    // I will modify the below code to use standard functions for creating elements
+    const adxDialog = createAdxDialog("splitter-modal");
+    const splitterTitleHeading = createAdxHeadingElement("Text Splitter", "h2");
+    const headingForDropdown = createAdxDivContainer(
+      "Choose your settings below:"
+    );
+    const dropdownForConfigs = createAdxDropdown(
+      "splitter-config-dropdown",
+      dropdownOptions
+    );
+    const refreshButton = createAdxButton("⟳", "darkblue", "white", "14px");
+    const fileAndPasteDiv = createAdxDivContainer()
+      .appendChild(createElement("input", (type = "file")))
+      .appendChild(createAdxButton("Paste", "green", "white", "12px"));
+    const delimiterLabel = createAdxSimpleLabel("Delimiter String");
+    const checkboxForRegex = createAdxLabeledCheckbox(
+      "Regex",
+      settings.useRegex
+    );
+    const delimiterInputField = createAdxTextInput(
+      "Enter delimiter string",
+      settings.delimiter
+    );
+    const chunkPromptTextareaLabel = createAdxSimpleLabel(
+      "Chunk Prompt (after each chunk)"
+    );
+    const chunkPromptTextarea = createAdxTextarea(
+      "Prompt to append after each chunk",
+      settings.chunkPrompt
+    );
+    const randomDelayDiv = createAdxDivContainer();
+    const randomDelayLabel = createAdxSimpleLabel("Random delay between");
+    const adxrandomDelayMinInput = createAdxTextInput(
+      "Min",
+      settings.randomDelayMin
+    );
+    const adxrandomDelayMaxInput = createAdxTextInput(
+      "Max",
+      settings.randomDelayMax
+    );
+    appendChildren(randomDelayDiv, [
+      randomDelayLabel,
+      adxrandomDelayMinInput,
+      adxrandomDelayMaxInput,
+    ]);
+    const cancelButton = createAdxButton("Cancel", "gray", "white", "12px");
+    const startButton = createAdxButton("Start", "blue", "white", "12px");
+    const bottomButtonsDiv = createAdxDivContainer();
+    appendChildren(bottomButtonsDiv, [cancelButton, startButton]);
 
-    
+    // now lets generate the whole modal .. the first div should have the rest of the elemenets appeneded to it
+    const modal = appendChildren(adxDialog, [
+      splitterTitleHeading,
+      headingForDropdown,
+      dropdownForConfigs,
+      refreshButton,
+      fileAndPasteDiv,
+      delimiterLabel,
+      checkboxForRegex,
+      delimiterInputField,
+      chunkPromptTextareaLabel,
+      chunkPromptTextarea,
+      randomDelayDiv,
+      bottomButtonsDiv,
+    ]);
 
-    const modal = document.createElement("div");
-    modal.id = "splitter-modal";
-    modal.className = "fixed inset-0 flex items-center justify-center z-50";
-    modal.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
-    modal.innerHTML = `
-      <div class="bg-white dark:bg-gray-800 rounded-lg p-4 w-72 max-w-90vw max-h-90vh overflow-y-auto">
-        <h2 class="text-lg font-bold mb-3 text-gray-900 dark:text-white">Text Splitter</h2>
-        <div class="space-y-3">
-          <!-- Dropdown for splitter configs with refresh button -->
-          <div style="display:flex; align-items:center; gap:6px;">
-            <label class="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Choose Splitter Config</label>
-            <select id="splitter-config-dropdown" class="w-full p-1 text-xs border border-gray-300 dark:border-gray-600 rounded dark:bg-gray-700 dark:text-white">
-              ${dropdownOptions}
-            </select>
-            <button id="refresh-configs-btn" title="Refresh configs from API" style="padding:2px 6px; font-size:14px; border-radius:4px; border:1px solid #ccc; background:black; cursor:pointer;" type="button">⟳</button>
-          </div>
-          <div>
-            <label class="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Text Input
-            </label>
-            <div class="flex gap-2">
-              <input type="file" id="text-file-input" accept=".txt,.md"
-                     class="flex-grow min-w-0 px-2 py-1 text-xs border border-gray-300 dark:border-gray-600 rounded dark:bg-gray-700 dark:text-white" />
-              <button id="paste-text-button" type="button"
-                      class="px-2 py-1 bg-green-500 text-white rounded hover:bg-green-600 text-xs flex-shrink-0">
-                Paste
-              </button>
-            </div>
-          </div>
-          <div>
-            <div class="flex items-center gap-2 mb-1">
-              <label class="text-xs font-medium text-gray-700 dark:text-gray-300">
-                Delimiter String
-              </label>
-              <label class="flex items-center text-xs text-gray-600 dark:text-gray-400 ml-2">
-                <input type="checkbox" id="regex-checkbox" ${
-                  settings.useRegex ? "checked" : ""
-                } class="mr-1">
-                Regex
-              </label>
-            </div>
-            <input type="text" id="delimiter-input" value="${
-              settings.delimiter
-            }"
-                   class="w-full p-1 text-xs border border-gray-300 dark:border-gray-600 rounded dark:bg-gray-700 dark:text-white"
-                   placeholder="Enter delimiter string">
-          </div>
-          <div>
-            <label class="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Chunk Prompt (after each chunk)
-            </label>
-            <textarea id="chunk-prompt-input" rows="2"
-                      class="w-full p-1 text-xs border border-gray-300 dark:border-gray-600 rounded dark:bg-gray-700 dark:text-white"
-                      placeholder="Prompt to append after each chunk">${
-                        settings.chunkPrompt
-                      }</textarea>
-          </div>
-          <div>
-            <label class="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
-              <span>Random delay between </span>
-              <input type="number" id="random-delay-min-input" value="${
-                settings.randomDelayMin
-              }"
-                     min="0" max="5000"
-                     class="w-10 px-0.5 py-0.5 text-xs border border-gray-300 dark:border-gray-600 rounded dark:bg-gray-700 dark:text-white text-center mx-1"
-                     placeholder="Min" />
-              <span>and</span>
-              <input type="number" id="random-delay-max-input" value="${
-                settings.randomDelayMax
-              }"
-                     min="0" max="5000"
-                     class="w-10 px-0.5 py-0.5 text-xs border border-gray-300 dark:border-gray-600 rounded dark:bg-gray-700 dark:text-white text-center mx-1"
-                     placeholder="Max" />
-              <span>ms</span>
-            </label>
-          </div>
-        </div>
-        <div class="flex justify-end space-x-2 mt-4">
-          <button id="cancel-splitter"
-                  class="px-2 py-1 bg-gray-500 text-white rounded hover:bg-gray-600 text-xs">
-            Cancel
-          </button>
-          <button id="start-splitter"
-                  class="px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 text-xs">
-            Start
-          </button>
-        </div>
-      </div>
-    `;
     document.body.appendChild(modal);
 
     const dropdownEl = document.getElementById("splitter-config-dropdown");
