@@ -1,0 +1,221 @@
+prepare magnesium and heparin at some point
+
+Below is a concise “set-up list” based on the previous plan and the notes.
+
+***
+
+## 1. Airway / Equipment
+
+- ETT: 3.0 mm uncuffed (primary), 2.5 mm cuffed (backup), 3.5 mm uncuffed (backup).  
+- Stylet, suction catheter, oral airway.  
+- Laryngoscope: Miller 0 and Miller 1 blades.  
+- Backup LMA: Size 1.  
+- Arterial line: 24G kit (radial ± femoral).  
+- Central line: equipment for PICC/CVC if new line needed.  
+- NIRS sensors (cerebral + renal), TEE probe (neonate), temperature probes (naso + rectal/bladder).  
+- CPB priming equipment per perfusion (neonatal circuit, prime with blood as per center).
+
+***
+
+## 2. Induction / Maintenance Medications (Draw Up)
+
+**All doses for 3.9 kg (rounding acceptable).**
+
+1. **Atropine**  
+   - Dose: 0.02 mg/kg ≈ 0.08 mg IV.  
+   - Prepare: 0.1 mg in labeled syringe.
+
+2. **Fentanyl**  
+   - Induction: 10–25 mcg/kg (40–100 mcg) IV.  
+   - Prepare: 100 mcg total in one syringe (dilute to convenient volume).  
+   - Continuous: Have infusion ready (e.g., 50 mcg/mL to run at 1–5 mcg/kg/hr).
+
+3. **Midazolam**  
+   - Induction: 0.05–0.1 mg/kg (0.2–0.4 mg) IV.  
+   - Prepare: 1 mg syringe for titration.  
+   - Infusion: optional, prepared but not mandatory.
+
+4. **Rocuronium**  
+   - Induction: 0.6–1 mg/kg (2.5–4 mg) IV.  
+   - Prepare: 10 mg in syringe.  
+   - Redosing or infusion available (same vial).
+
+5. **Ketamine** (backup)  
+   - Induction backup: 1–2 mg/kg (4–8 mg) IV.  
+   - Prepare: 10 mg in syringe.
+
+6. **Etomidate** (if used at your center)  
+   - Induction: 0.2–0.3 mg/kg (0.8–1.2 mg) IV.  
+   - Prepare: 2 mg in syringe.
+
+***
+
+## 3. Vasoactive / Inotrope Infusions (Pre-made)
+
+Prepare infusions with your institutional standard concentrations; label clearly.
+
+- **Epinephrine infusion**  
+  - Start range: 0.02–0.05 mcg/kg/min (titrate up).  
+  - Have ready and connected (carrier running).
+
+- **Milrinone infusion**  
+  - Start: 0.33–0.5 mcg/kg/min (NO loading dose).  
+  - Prepare but do not start until post-CPB unless indicated.
+
+- **Dopamine infusion** (backup)  
+  - Range: 2–20 mcg/kg/min.
+
+- **Dobutamine infusion** (backup)  
+  - Range: 2–20 mcg/kg/min.
+
+- **Norepinephrine infusion** (backup for vasoplegia)  
+  - Range: 0.05–1 mcg/kg/min.
+
+- **Vasopressin infusion** (backup)  
+  - Range: 0.3–2 mU/kg/min.
+
+- **Phenylephrine**  
+  - Bolus: 5–10 mcg/kg IV.  
+  - Prepare syringe (e.g., 100 mcg/mL) for bolus rescue.
+
+***
+
+## 4. Anticoagulation / Reversal
+
+- **Heparin**  
+  - Dose: 300–400 U/kg (≈1,200–1,600 U) IV before CPB, plus extra for ACT-guided dosing.  
+  - Prepare: total required dose in syringe; have extra vial available.
+
+- **Protamine**  
+  - Dose guide: 1 mg per 100 U heparin total given.  
+  - Prepare vial(s), calculate approximate required amount for handoff to end-of-bypass.
+
+***
+
+## 5. Fluids / Blood Products
+
+- **Crystalloids**  
+  - Two bags: NS and LR available, with buretrol.  
+  - Maintenance: 4 mL/kg/hr ≈ 15–16 mL/hr.
+
+- **Glucose-containing solution**  
+  - D5 or D2.5 solution ready for infusion and glucose corrections.
+
+- **Blood Products** (ensure availability)  
+  - PRBCs: at least 10 mL/kg (~40 mL).  
+  - FFP and platelets on standby per institutional cardiac protocol.  
+  - Cryoprecipitate available if needed.
+
+***
+
+## 6. Emergency / Resuscitation Meds (Pre-drawn)
+
+1. **Epinephrine 1:10,000 (0.1 mg/mL)**  
+   - Arrest/bradycardia dose: 10 mcg/kg = 0.1 mL/kg.  
+   - For 3.9 kg: ~40 mcg = 0.4 mL.  
+   - Draw up 1–2 mL in syringe.
+
+2. **Atropine** (same as induction syringe; can be used emergency)  
+   - 0.02 mg/kg ≈ 0.08 mg.
+
+3. **Adenosine**  
+   - 0.1–0.3 mg/kg for SVT; have full vial ready.
+
+4. **Calcium Chloride**  
+   - 10–15 mg/kg central IV.  
+   - Draw up appropriate volume based on concentration.
+
+5. **Sodium Bicarbonate**  
+   - 1–2 mEq/kg; prepare syringe.
+
+6. **Magnesium Sulfate**  
+   - 25–50 mg/kg; have vial for arrhythmias.
+
+7. **Lipid Emulsion**  
+   - Available in room (for LAST).
+
+8. **Dantrolene**  
+   - Ensure MH cart in room; know reconstitution protocol.
+
+***
+
+## 7. Post-CPB / Hemostasis
+
+- **Tranexamic Acid or Aminocaproic Acid**  
+  - Prepared according to your protocol for antifibrinolysis.
+
+- **Albumin 5%**  
+  - At least one bottle ready for volume support.
+
+***
+
+Right IJ CVC (3.9 kg neonate): central venous catheter
+
+Size: 3 Fr or 4 Fr, single lumen (or 4 Fr double lumen if needed).
+
+Length: 5–8 cm (short neonatal catheter).
+
+----------
+
+
+For this 8‑day‑old term neonate with critical AS under anesthesia, reasonable **intraoperative targets to accept/maintain** are:
+
+- **Heart rate:**  
+  - Aim: **120–150 bpm** (sinus).  
+  - Avoid: HR <100 (↓CO) and significant tachycardia >170 (↓diastolic filling, ↓coronary perfusion).[1][2]
+
+- **Blood pressure / MAP:**  
+  - Term neonate normals around this age: SBP ~70–80, DBP ~45–50, MAP ~55–60 mmHg awake.[3][1]
+  - Under anesthesia for cardiac surgery, accept **MAP ~35–50 mmHg**, but avoid sustained MAP <35, especially if lactate or NIRS worsen.[4][5]
+
+- **Oxygenation and perfusion:**  
+  - SpO₂: **>92%** (per CTICU plan).  
+  - Cerebral (and renal) NIRS: aim **>65%** and stable trend.[5][6]
+  - Lactate: keep **<3 mmol/L**, avoid rising trend as sign of inadequate systemic perfusion.[7][5]
+
+- **Other bedside indicators:**  
+  - Capillary refill ≤2–3 s, warm extremities, urine output ≥1 mL/kg/hr.[3][5]
+
+Within those ranges, treat trends (falling MAP with rising lactate/NIRS drop or HR drifting out of range) rather than single numbers.
+
+[1](https://www.nationwidechildrens.org/conditions/health-library/physical-exam-of-the-newborn)
+[2](https://my.clevelandclinic.org/health/diagnostics/heart-rate)
+[3](https://www.safercare.vic.gov.au/best-practice-improvement/clinical-guidance/neonatal/blood-pressure-disorders)
+[4](https://onlinelibrary.wiley.com/doi/abs/10.1111/pan.12987)
+[5](https://pmc.ncbi.nlm.nih.gov/articles/PMC7575728/)
+[6](https://pmc.ncbi.nlm.nih.gov/articles/PMC11979500/)
+[7](https://www2.ccasociety.org/newsletters/2021summer/chip/predictors.html)
+[8](https://link.springer.com/10.1007/s00467-023-05979-x)
+[9](https://linkinghub.elsevier.com/retrieve/pii/S0146000503001289)
+[10](http://archpedi.jamanetwork.com/article.aspx?doi=10.1001/archpedi.1955.02050110246012)
+[11](https://www.cambridge.org/core/product/identifier/S0007114515000562/type/journal_article)
+[12](https://www.semanticscholar.org/paper/56f69730de06a43b037bd8fe6fba0dbff989277c)
+[13](https://www.physiology.org/doi/10.1152/japplphysiol.00970.2013)
+[14](https://publications.aap.org/pediatrics/article/123/4/e646/71413/Repeat-Prenatal-Corticosteroid-Doses-Do-Not-Alter)
+[15](https://www.semanticscholar.org/paper/612236badb608f19e6a3029bd8320d150509c1e0)
+[16](https://academic.oup.com/ndt/article-lookup/doi/10.1093/ndt/gfv410)
+[17](http://jama.jamanetwork.com/article.aspx?doi=10.1001/jama.2011.1650)
+[18](https://www.omicsonline.org/open-access/is-there-a-normal-blood-pressure-in-neonates-2167-1095-1000e112.pdf)
+[19](https://pmc.ncbi.nlm.nih.gov/articles/PMC3990926/)
+[20](https://pmc.ncbi.nlm.nih.gov/articles/PMC1272682/)
+[21](https://pmc.ncbi.nlm.nih.gov/articles/PMC1029597/)
+[22](https://ej-med.org/index.php/ejmed/article/download/1752/1041)
+[23](https://pmc.ncbi.nlm.nih.gov/articles/PMC11061963/)
+[24](https://pmc.ncbi.nlm.nih.gov/articles/PMC9112315/)
+[25](https://pmc.ncbi.nlm.nih.gov/articles/PMC1626905/)
+[26](https://www.childrensmercy.org/siteassets/media-documents-for-depts-section/documents-for-health-care-providers/evidence-based-practice/clinical-practice-guidelines--care-process-models/normal-blood-pressures-by-age.pdf)
+[27](https://www.starship.org.nz/guidelines/blood-pressure-hypertension-in-neonates)
+[28](https://www.bcm.edu/bodycomplab/BPappZjs/BPvAgeAPPz.html)
+[29](https://www.ucsfbenioffchildrens.org/medical-tests/pulse)
+[30](https://publications.aap.org/pediatrics/article/150/Supplement%202/e2022056415J/189882/Acute-Cardiac-Care-for-Neonatal-Heart-Disease)
+[31](https://www.nccwebsite.org/content/documents/courses/Neonatal%20BP%20standards-1.pdf)
+[32](https://pubmed.ncbi.nlm.nih.gov/7063425/)
+[33](https://neopeds.academy/bp/)
+[34](https://www.frontiersin.org/journals/neurology/articles/10.3389/fneur.2021.740185/full)
+[35](https://publications.aap.org/pediatricsinreview/article/41/6/307/35417/Neonatal-Hypertension)
+[36](https://chemm.hhs.gov/pals.htm)
+[37](https://pubmed.ncbi.nlm.nih.gov/36083106/)
+[38](https://medlineplus.gov/ency/article/007329.htm)
+[39](https://www.rch.org.au/clinicalguide/guideline_index/normal_ranges_for_physiological_variables/)
+[40](https://www.nature.com/articles/s41390-024-03161-z)
+[41](https://www.gosh.nhs.uk/documents/7745/Appendix_7_Normal_Blood_Pressures_R53BRgg.pdf)
