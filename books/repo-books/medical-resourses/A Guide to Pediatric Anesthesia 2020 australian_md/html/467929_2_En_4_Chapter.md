@@ -43,9 +43,7 @@ Table 4.1
 Anatomical differences in infants and children compared to adults and their consequences for clinical practice
 
 | 
-Difference in neonate and infant | Consequence
-
- |
+Difference in neonate and infant | Consequence |
 | --- | --- |
 | 
 
