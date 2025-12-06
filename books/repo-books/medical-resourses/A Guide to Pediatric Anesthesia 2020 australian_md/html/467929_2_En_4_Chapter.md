@@ -45,59 +45,19 @@ Anatomical differences in infants and children compared to adults and their cons
 | 
 Difference in neonate and infant | Consequence |
 | --- | --- |
-| 
-
-High metabolic rate | Desaturate quickly during apnea or airway obstruction
-
- |
-| 
-
-Large head | Use head ring rather than pillow (Fig. [4.3](#Fig3))
-
- |
-| 
-
-No nasal turbinates | Less resistance to passage of nasal ETT
-
- |
-| 
-
-Soft, compressible floor of mouth in infants | Pressure from anesthetist’s fingers can push tongue against roof of mouth obstructing the airway—be careful to place fingers only on bony structures during airway maneuvers
-
- |
-| 
-
-Obtuse mandibular angle of 140° (adult 120)
+| High metabolic rate | Desaturate quickly during apnea or airway obstruction |
+| Large head | Use head ring rather than pillow (Fig. [4.3](#Fig3)) |
+| No nasal turbinates | Less resistance to passage of nasal ETT |
+| Soft, compressible floor of mouth in infants | Pressure from anesthetist’s fingers can push tongue against roof of mouth obstructing the airway—be careful to place fingers only on bony structures during airway maneuvers |
+| Obtuse mandibular angle of 140° (adult 120)
 
 Large tongue relative to mouth size
 
-Higher, slightly anterior larynx (vocal cords opposite C3; adult C5) | Tongue closer to roof of mouth and obstruction more likely. Harder to compress tongue with laryngoscope and align visual axes of mouth, pharynx and larynx. Larynx appears to be more anterior at intubation, and forward flexion of neck does not improve laryngeal view
-
- |
-| 
-
-Long, thin U-shaped epiglottis with small amount of cartilage. Broad and fleshy ary-epiglottic folds. Large, mobile arytenoids
-
-Vocal cords angled slightly anterior (adult perpendicular) | Large floppy epiglottis more likely to require physical displacement to view glottis (lift directly with straight blade). More likely to have ETT catch on glottic opening
-
-Supraglottic structures more likely to feature in pathology
-
- |
-| 
-
-Cricoid ring is narrowest part of airway until puberty (adult: glottic opening) | Determines ETT size
-
- |
-| 
-
-Trachea soft and compliant | Collapse of extrathoracic trachea in upper airway obstruction
-
- |
-| 
-
-Ribcage soft and compliant | Indrawing of chest in upper airway obstruction
-
- |
+Higher, slightly anterior larynx (vocal cords opposite C3; adult C5) | Tongue closer to roof of mouth and obstruction more likely. Harder to compress tongue with laryngoscope and align visual axes of mouth, pharynx and larynx. Larynx appears to be more anterior at intubation, and forward flexion of neck does not improve laryngeal view |
+| Long, thin U-shaped epiglottis with small amount of cartilage. Broad and fleshy ary-epiglottic folds. Large, mobile arytenoids. Vocal cords angled slightly anterior (adult perpendicular) | Large floppy epiglottis more likely to require physical displacement to view glottis (lift directly with straight blade). More likely to have ETT catch on glottic opening Supraglottic structures more likely to feature in pathology |
+| Cricoid ring is narrowest part of airway until puberty (adult: glottic opening) | Determines ETT size |
+| Trachea soft and compliant | Collapse of extrathoracic trachea in upper airway obstruction |
+| Ribcage soft and compliant | Indrawing of chest in upper airway obstruction |
 
 ### 4.1.1 Nasal Breathing
 
