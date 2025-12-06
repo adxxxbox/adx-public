@@ -1,0 +1,62 @@
+General Blood Administration Policies    body {font-family: 'Open Sans', sans-serif;}
+
+## General Blood Administration Policies
+
+**Consent**  
+The MD or LIP is responsible for obtaining and documenting informed consent for blood product administration except when the need for a transfusion is determined to be an emergency.  
+If an emergency, MD must document the nature of the emergency in the patient's chart.
+
+**Type & Cross  
+**After the blood is drawn, a blood bracelet is placed on the patient's wrist by the person drawing the blood.  
+It contains patient's name, medical record number, armband number, date and initials of the person collecting the blood.  
+Unless it's a life or death situation, NEVER transfuse blood to a patient if the blood bracelet is not attached to the patient's arm.
+
+**Verification of Consent**  
+The RN is responsible for verification of informed consent prior to administration of blood/blood products using the Blood Consent Verification Form.
+
+If consent for blood/blood products has been included in the surgical consent, the RN completes the Informed Consent Verification form as well as the Blood Consent Verification Form.
+
+**Refusal**  
+The patient always has the right to refuse blood/blood products. The RN uses the Blood Consent Verification Form to document the patient refusal.
+
+**Administration**  
+Take Vital signs are taken before administering blood. If the patient's temperature is >100 degrees F, notify the physician.  
+Once the blood is infusing, the physician should be notified for any two degree increase above the baseline temperature.
+
+Keep that slip attached to the blood bag during transfusion.  
+It is not removed until the transfusion is complete.
+
+All blood must be infused using a blood administration set. The blood set/filter may only be used up to a maximum of four hours.
+
+**Administration Time Frame**  
+On the floors, whole blood and PRBCs should be routinely infused over 1-2 hours but not more than 4 hours. This obviously does pertain perioperatively.
+
+American Association of Blood Banks (AABB) states "4 hours as the maximum duration for an infusion."
+
+**NICU/Nursery**  
+We normally pulls the blood into a syringe through a blood filter and administers via a syringe pump.
+
+**General Information**  
+Blood shall be administered (started) by a physician or a registered nurse only.
+
+Sodium Chloride Injection, USP (normal saline) is the only solution suitable for use with the transfusion of blood products.
+
+Blood products are never to be infused in a line with other medications already infusing i.e. Morphine IV PCA cannot be infused with blood.
+
+Medications are never added to blood products.
+
+**Documentation**  
+The Transfusion Record is used to document blood administration. Documentation includes:  
+Date and time the blood was started.  
+For vitals: Many chart "SAR" (See Anesthesia Record)  
+Amount transfused: You should not chart "ALL."  
+Time completed  
+Who discontinued the blood
+
+**Adverse Reactions**  
+Should a reaction occur: STOP the transfusion.  
+Keep the line open with saline.  
+Follow directions on back of Transfusion Record.
+
+  
+Practice Guidelines for Perioperative Blood Transfusion and Adjuvant Therapies:An Updated Report by the American Society of Anesthesiologists Task Force on Perioperative Blood Transfusion and Adjuvant Therapies Anesthesiology,July 2006, Vol. 105, 198–208.

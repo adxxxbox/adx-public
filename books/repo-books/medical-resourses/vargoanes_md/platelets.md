@@ -1,0 +1,47 @@
+Platelets   body {font-family: 'Open Sans', sans-serif;} .ui-header .ui-title, .ui-footer .ui-title { margin-right: 0 !important; margin-left: 0 !important; } \* { margin:0px; padding:0px;} .ui-page { background: #f2f2f2 url(bg.jpg); line-height:1.5em;} #home\_link { color:#FFF; text-decoration:none; cursor:pointer; font-family:'AndikaBasicRegular',Arial, sans-serif; font-size:0.9em; margin-left:15%; } #home\_link span {font-size:0.6em;margin-left:15%; color: #D8D8D8; } h1 {font-family:'AndikaBasicRegular'; } #blood-comp td { padding:1em;}
+
+# Platelets
+
+**Platelets (Thrombocytes)**  
+**Normal Platelets:** 150-350,000 per u/L of blood.  
+Platelets < 50k (surgical) require a platelet transfusion.  
+One unit increases the platelet count 5-10,000/mm3.  
+Average single unit of platelets contains 5.5-10 million platelets.  
+This is not enough to correct thrombocytopenia.  
+6 units (packs) is a common dose and increases platelet count by 30-60,000/uL.  
+**Volume:** 50mLs per unit  
+1 pack (unit) represents platelets removed from 1 unit of blood.  
+**Doses:** One Unit per 10kg of body weight  
+**Most popular:** 6 units (packs)  
+  
+**Indications:**  
+Nonbleeding patient < 20k  
+Bleeding patient < 50k  
+Platelets can be from multiple donors or a single donor.  
+Platelet pheresis packs (Apheresis) -Single Donor.  
+It's equivalent to 6 single units (6 pack)  
+Multiple blood donations from the same donor followed by centrifugation and return of the RBCs back to the donor.  
+  
+**Single donor:** About 40 million platelets derived from the equivalent of 6 units of whole blood.  
+Around 250-300mLs per bag.  
+The doctor can request 1 donor, but it takes longer.  
+It contains about six times as many platelets as a unit of platelets obtained from whole blood.  
+  
+**Pooled Concentrates:** Platelets combined from 4-20 donors.  
+Has an increased chance of transmission of viral diseases compared to just a single donor.  
+  
+**Irradiated Platelets:**  
+Platelets have (HLA) on their cell membranes and patients sensitized to these antigens will destroy infused platelets. They will distruct. Platelets that receive ultra violet irradiation lowers the incidence of this immune mediated refractoriness to platelet transfusions.  
+Also to prevent Transfusion associated graft versus host disease (TA-GVHD).  
+**Platelet Preparation**  
+Platelets are prepared from centrifugation citrated whole blood within 8 hours of collection. Stored at 22- 24C and under continuous gentle agitation to facilitate gas exchange.  
+Shelf life stops at the fifth day of storage because of the risk of bacterial and viral contamination.  
+**Don't refrigerate:** they will lose their ability to aggregate.  
+**Blood Compatibly checks:** Yes  
+Platelet membranes have no ABO antigens, transfusion reactions from ABP incompatibility do not occur with platelet transfusions.  
+However, Platelets still contain a small amount of RBCs and leukocytes and an ABO incompatibility reaction is still possible.  
+**HLA (human leukocyte antigen):**  
+Is a way of testing a blood donor's platelets.  
+It is used to identify a donor whose platelets are most compatible with the blood of the person who will get the platelets. However, in an emergency, there is usually not enough time to get HLA-matched platelets.
+
+#### Copyright © 2012

@@ -1,0 +1,36 @@
+Dabigatran (Pradaxa) Table    body {font-family: 'Open Sans', sans-serif;}
+
+### Dabigatran (Pradaxa) and Neuraxial Blocks
+
+**Praxbind® (idarucizumab)** is the antidote for reversing the anticoagulant activity of **Dabigatran (Pradaxa).** table.tableizer-table { font-size: 12px; border: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif; } .tableizer-table td { padding: 4px; margin: 3px; border: 1px solid #CCC; } .tableizer-table th { background-color: #104E8B; color: #FFF; font-weight: bold; }
+
+| Minimal Time between  
+last dose and neuraxial procedure | Can it be given with  
+epidural catheter in place? | Restart after  
+neuraxial procedure | Restart after  
+catheter removal |
+| --- | --- | --- | --- |
+| 72 hours if CrCl ≥ 80 mL/min  
+96 hours if CrCl is 50-79 mL/min  
+120 hours if CrCl is 30-49 mL/min  
+Avoid when CrCl < 30 mL/min  
+120 hours when kidney function  
+has not been determined. | Avoid in the presence  
+of indwelling catheter. | 6 hours  
+if NO indwelling catheter  
+was inserted. | 6 hours |
+
+  
+**Deep plexus and peripheral blocks:** Same as neuraxial block.  
+**Superficial peripheral blocks:** Based on vascularity, site compressibility and available management if bleeding occurred.  
+  
+**Labs:  
+**Diluted Thrombin time (TT).  
+Ecarin clotting time.  
+Always refer to the latest ASRA (American Society of Regional Anesthesia and Pain) Recommendations  
+https://www.asra.com/advisory-guidelines  
+  
+ASRA Assistance:  
+Toll free in US: 855-795-ASRA (2772)  
+412-471-2718  
+asraassistant@asra.com

@@ -1,0 +1,11 @@
+Retrobulbar Block (RBB) and Alfenta     body {font-family: 'Open Sans', sans-serif;}
+
+### Retrobulbar Block (RBB) and Alfenta
+
+Take the patient into the OR suite. Apply the monitors, including the Salter NC for ETCO2 sampling. Administer 1-2 mg. of Versed. I don’t do a weight-based dose of Alfenta. Some factors I consider are things like these:
+
+Does the patient chronically use narcotics and/or Benzodiazepines daily? Does this patient take more than 10-12 different medications daily? Are they diabetic? Have they had other eye procedures, including vitrectomy? Is the patient overweight, or frail; is there a history of OSA? What is their BMI? Are there some comorbidities you need to consider?
+
+**What’s the patient’s heart rate?** If the patient’s present HR is low (40-50 bpm), you should consider administering 0.1-0.2mg of Robinul prior to administering any Alfenta.  Alfenta is known for dropping the HR 5-20bpm; sometimes more.
+
+Our institution has 2 cc Alfenta in the 500 mcgs/cc strength. Using a 10 cc syringe, I dilute the 2 ccs into the syringe by adding 8 ccs of either sterile water or NSS. My Alfenta is now 100 mcgs/cc. After all that, I will give between 500-750 mcgs of Alfenta as a bolus. And I wait and watch the patient. Often nothing happens for 60-75 seconds. I direct the crew in the room to quiet down. Around 75-100 seconds in, I am looking at the EKG and the heart rate begins to slow unless they are beta blocked to begin with. It will drop around 5-20 bpm. Then the patient gets a dreamy, faraway look in their eyes and will often become apneic. Then I gently call their name and ask them to take a breath and they always ‘come back around’ and comply. The eye doc then steps up and does his or her RBB and the patient will usually whisper ouch very quietly. Some give a small facial grimace. But they all have a great analgesic for the block and the Alfenta is gone after an hour and a half. It is a great drug. I have personally never seen the ‘lead chest’ the literature mentions; and I personally have done hundreds and hundreds of anesthetics using Alfenta as the primary anesthetic for the surgeon’s RBB.

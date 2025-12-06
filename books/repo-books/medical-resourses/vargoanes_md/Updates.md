@@ -1,0 +1,209 @@
+Updates    body {font-family: 'Open Sans', sans-serif;}
+
+# Recent Mega App Updates
+
+-   Atrial Ablation for Atrial Fibrillation Room Set-up
+-   Pulsed Field Ablation Room Set-up
+-   Cardiac Drip Cheat sheet – Updated
+-   Isuprel Table -Updated
+-   NIM ETT-Updated
+-   Esmolol - updated
+-   Labetalol (Trandate) - updated
+-   Zofran (Ondansetron) - updated
+-   Hypoglossal Nerve Stimulator Implantation for Obstructive Sleep Apnea - updated
+-   Ephedrine (Ephedrine Sulfate) - updated
+-   Neosynephrine (Phenylephrine) Notes - updated
+-   Metoprolol Tartrate (Lopressor, Toprol-XL, and Betaloc) - updated
+-   AAA Open Abdominal Endovascular Aortic Aneurysm Repair (EVAR) Room Set-Up
+-   Qp/Qs Shunt Ratio-Updated
+-   Neostigmine -updated
+-   Rocuronium - updated
+-   Rocuronium – Precurarization
+-   Atracuronium ( Atracuronium Besylate)-updated
+-   Cisatracuronium Besylate (Nimbex) Dosing-Peds
+-   Cisatracuronium Besylate (Nimbex)-updated
+-   Succinylcholine (Anectine, Quelicin)-updated
+-   Succinylcholine and Burn Patients- updated
+-   Succinylcholine and Dibucaine Number
+-   Succinylcholine - Up Regulation of Nicotinic Acetylcholine Receptors (nAChRs)
+-   Succinylcholine- Phase I and Phase II Blocks
+-   Succinylcholine and Pseudocholinesterase (PCE) Deficiency
+-   UroNav Transperineal Prostate Biopsy
+-   Middle Meningeal Artery (MMA) Embolization
+-   Prostate Biopsy - updated
+-   Abdominal Aortic Aneurysm (AAA) Open Repair- Nonurgent, Room Set-Up
+-   Lap Chole (Laparoscopic Cholecystectomy) - updated
+-   Appendectomy, Laparoscopic- updated
+-   ERCP (Endoscopic Retrograde Cholangiopancreatography) - updated
+-   Amniotic Fluid Embolism Management
+-   Amniotic Fluid Embolism - updated
+-   Amniotic Fluid Embolism Pathophysiology
+-   Heart Transplant Patient for Noncardiac Surgery Pre-op Assessment
+-   Heart Transplant Patient for Noncardiac Surgery Anesthesia - updated
+-   Heart Transplant Facts and Drugs that Work and Don't Work - updated
+-   Tourniquet Deflation Induced Hypotension and other Complications
+-   Tourniquet Specifications for Orthopedics
+-   Tourniquet Possible Localized and Systemic Complications
+-   Thoracic Sympathectomy Updated
+-   Discectomy or Microdiscectomy Updated
+-   Lobectomy-Thoracotomy Updated
+-   Thoracotomy” Updated
+-   Thoracotomy-Wedge Resection” Updated
+-   Craniotomy Room Set-up Quick Check List
+-   Thoracoscopy with Pleurodesis
+-   Thoracoscopy (VATS) with One Lung Ventilation Notes
+-   One Lung Ventilation (OLV) with VATS (Thoracoscopy) and Hypoxic Pulmonary Vasoconstriction (HPV)
+-   Impella Left Ventricular Assist Device Insertion
+-   Impella Left Ventricular Assist Device
+-   CABG On and Off Pump Cheat Sheet
+-   Carotid Endarterectomy-Updated
+-   Aortogram or Arteriogram Run-Off-updated
+-   Hysterectomy Robotic-Updated
+-   Ablation for SVT - Updated
+-   Pulsed Field Ablation for Atrial Fibrillation
+-   Vasotec (enalapril) IV
+-   Journavx (suzetrigine)
+-   Buprenorphine Transdermal Patch Anesthesia Concerns and Management
+-   Buprenorphine Transdermal Patch (Norspan, Transect)
+-   Antrectomy with Reconstruction-Case Tips -GI Procedures
+-   Billroth I and Billroth II Procedures -Updated
+-   AAA Repair-Endovascular (EVAR)-Updated
+-   Microlaryngoscopy Tube or MLT Tube
+-   Microlaryngoscopy With or Without a Laser-Updated
+-   Robotic Procedures and Anesthesia Notes
+-   Laparoscopic or Robotic Rectopexy
+-   Aortic Aneurysms-Types of Dissections
+-   Laser Endotracheal Tubes
+-   Aortic Valve and Stenosis Values per Echocardiography
+-   Cystolitholapaxy - updated
+-   Craniotomy Room and Medication Set-Adults -Updated
+-   Septal Myectomy
+-   EGD for Removal of Obstructed Food Bolus
+-   Periurethral Injection of Bulkamid
+-   Robotic Cystectomy with Ileal Conduit
+-   Suggamadex-Evidence-Based Sugammadex Utilization in Pediatric Surgical Patients
+-   Sugammadex Pediatric Dosing
+-   Tenecteplase
+-   Zynrelaf (DALA), ZYNRELEF/meloxicam
+-   Enteroscopy
+-   Sigmoidoscopy
+-   Octreotide - updated
+-   Bilateral Myringotomy-for adults
+-   Submandibular Mass Excision
+-   Tranexamic Acid (TXA) Contraindications and Precautions
+-   Air-Q LMA (SGA)
+-   Fastrach LMA (supraglottic airway device) SAD
+-   First vs Second Generation LMAs (supraglottic airways)
+-   Flexible LMA
+-   i-Gel LMA
+-   Intubation with ETT through the Fastrach LMA
+-   LMA and Lidocaine
+-   LMA Classic
+-   LMA Contradictions and Complications
+-   LMA Fastrach Insertion and Removal
+-   LMA Fastrach Maneuver Guide
+-   LMA Proseal
+-   LMA Supreme
+-   LMA Unique
+-   Combitube
+-   Drug-Induced Sleep Endoscopy (DISE) or Study
+-   IVC Filter Removal
+-   King Laryngeal Tube (LT) - Airway
+-   Oropharyngeal Airways (OPA)
+-   Tranexamic Acid (TXA) Infusion Table
+-   Ablation for SVT (supraventricular tachycardia) - updated
+-   Hartmanns Procedure (Proctosigmoidectomy) - updated
+-   AICD (Automated Implantable Cardioverter Defibrillator) Insertion - updated
+-   Convergent (or Convergence) Procedure Anesthesia
+-   Convergent (or Convergence) Procedure
+-   Thoracoscopic Left Atrial Appendage (LAA) Clipping or Ligation Anesthesia
+-   Thoracoscopic Left Atrial Appendage (LAA) or Ligation
+-   Cardiac Loop Recorder Implant Removal
+-   Watchman Procedure (LAACD) - updated
+-   Artificial Urinary Sphincter (AUS) Insertion
+-   Permacath Removal
+-   Hartmann's Procedure
+-   Hemodynamic Parameters Cheat Sheet for Adults
+-   Urolift Procedure
+-   Cardiac Output Treatment Options Cheat Sheet
+-   Sufenta (Sufentanil) as an Adjuvant to Neuraxial Anesthesia
+-   Tonsillectomy and Adenoidectomy (T & A) Anesthesia for Adults
+-   Aquablation of the Prostate
+-   Micra Leadless Pacemaker and Pre-op Programming
+-   Marinol
+-   Rotem Notes
+-   Rotem Cardiovascular Algorithm
+-   Rotem Post-Partum Hemorrhage Algorithm
+-   Rotem Liver Transplant Algorithm
+-   Rotem Standard Algorithms
+-   Rotem Trauma Algorithm
+-   SpaceOAR Vue Hydrogel Prostate Pacer Procedure
+-   Removal of Retained IUD
+-   Erector Spinea Plane Block- Added
+-   Mirinol- Added
+-   4 TAP Block Files- Added
+-   Paraesophageal Hernia (PEH) Repair and Anesthesia-Added
+-   Non-Opioid Agents and Dosing Cheat Sheet-Added
+-   Octreotide-Add
+-   Max Local Anesthetic Calculator
+-   Hemorrhage/Bleeding Antidotes and Reversal Agents
+-   Cerebral Perfusion Pressure Values and Notes
+-   Epidural Blood Patch
+-   Postdural Puncture Headache Conservative Treatment Regimens
+-   Postdural Puncture Headache Management
+-   Postdural Puncture Headache
+-   Cosyntropin for Postdural Puncture Headache
+-   Fioricet for Postdural Puncture Headache
+-   Local Anesthetic Max Dose Cheat Sheet
+-   4 Supraclavicular Nerve Block files added
+-   Precedex (Dexmedetomidine) as an Adjuvant for Peripheral Nerve Blocks
+-   5 more Interscalene Nerve Block Files added
+-   Lidocaine-Ketamine Infusion -2 Pumps
+-   Lidocaine-Ketamine-Magnesium-Precedex Cocktail
+-   Lidocaine-Magnesium Infusion -2 Pumps
+-   Opioid Use Disorder (OUD) Preoperative Screening
+-   Opioid Use Disorder-Postoperative Considerations
+-   Opioid Use Disorder
+-   Opioid-Free Anesthesia Alternatives Agents-Preoperative
+-   Opioid-Free Anesthetic Alternatives-Intraoperative
+-   Opioid-Free IV Bag Mixtures for Continuous Infusions
+-   4 Double Lumen Tube files-updated
+-   3 Angiotensin II (Giapreza) Infusion files-added
+-   3 Levophed files (dose updated in mcg/kg/min)
+-   3 Interscalene Nerve Block files-added
+-   Left vs Right Bundle Branch Block Cheat Sheet-added
+-   2 Epinephrine topics-added
+-   Precedex Pediatric (Dexmedetomidine) and Adult Cheat Sheets Dosing Sheet-added
+-   Precedex (Dexmedetomidine) Review-updated
+-   Cardioversion-Elective-updated
+-   Cardene (Nicardipine) Pharmacology and Notes-updated
+-   Ketamine Dose Cheat Sheet-added
+-   AV Fistula Revision or Arteriogram-updated
+-   Kidney Transplant - Left Donor Kidney vs Right-added
+-   fentanyl (Sublimaze) Dosing Cheat Sheet for Adults and Peds-added
+-   3 more Fentanyl (Sublimaze) files-added
+-   ASA Physical Status Classification System-added
+-   Propofol file (pharmacokinetics)-edited
+-   3 more Midazolam (Versed) files added
+-   Subacute Bacterial Endocarditis (SBE) Prophylaxis-added
+-   Atrial Flutter Ablation-Updated
+-   Atrial Ablation for Atrial Fibrillation-updated
+-   Remimazolam (Byfavo)-added
+-   Heart Failure Classifications-added
+-   Beta-Blocker Perioperative and Cardiomyopathy and Anesthesia Cheat Sheets-added
+-   Perioperative IV Antihypertensive Agents Cheat Sheet-added
+-   3 IPACK Block files-added
+-   Wolff-Parkinson-White Syndrome (WPW) with Atrial Fibrillation (A-Fib) information-updated
+-   Supraventricular Tachycardia (SVT), Atrial Fibrillation (A-Fib), Atrial Flutter (A-Flutter)
+-   Management Cheat Sheet -added
+-   Cardiac Implantable Electronic Device (CIED) Algorithm added
+-   Ibutilide (Covert) added
+-   Rivaroxaban and Andexxa-updated
+-   5 Saphenous Nerve Block files-added
+-   7 Femoral Nerve Block files-added
+-   Isoprel infusion table (for EP lab procedures)-added
+-   Midazolam (versed) PO dosing - edited
+-   Norepinephrine (Levophed) information on dosing and added more notes - updated
+-   Tranexamic Acid contraindications- Updated
+-   Endovascular Abdominal Aortic Aneurysm Repair (EVAR) Notes added
+-   Endovascular Abdominal Aortic Aneurysm Repair (EVAR) and Anesthesia-updated
